@@ -16,6 +16,7 @@ version-controlled Markdown artifacts alongside the code.
 
 Procedural documentation for using THING.
 
+- [Quick Start](guide/quick-start.md) — Smallest useful workflow to run first
 - [Workflow Overview](guide/workflow-overview.md) — Phase-by-phase workflow reference and artifact I/O contract
 
 ### Concepts
@@ -35,9 +36,9 @@ Per-workflow explanations of what each SE activity does, when to use it, and wha
 Stable lookup material.
 
 - [THING Architecture](reference/thing-architecture.md) — Design intent, integration model, and path-selection criteria
-- [Artifact Schema](reference/) *(forthcoming)*
-- [Command Catalog](reference/) *(forthcoming)*
-- [Glossary](reference/) *(forthcoming)*
+- [Command Catalog](reference/command-catalog.md) — Full command reference with Spec-Kit relationships and phase mapping
+- [Artifact Schema](reference/artifact-schema.md) — Common artifact structure, metadata fields, and ID prefixes
+- [Glossary](reference/glossary.md) — Key terms used across THING documentation and artifacts
 
 ### Examples
 
