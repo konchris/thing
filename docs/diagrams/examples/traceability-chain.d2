@@ -1,0 +1,88 @@
+# THING canonical traceability chain
+# Render with: d2 traceability-chain.d2 traceability-chain.svg
+
+direction: right
+
+Stakeholders: {
+  class: artifact
+  shape: rectangle
+}
+
+CONOPS: {
+  class: artifact
+  label: "Concept of\nOperations"
+}
+
+Requirements: {
+  class: artifact
+  label: "Requirements\nNFR / constraints"
+}
+
+Architecture: {
+  class: artifact
+}
+
+Interfaces: {
+  class: artifact
+  label: "Interface\nControl"
+}
+
+Verification: {
+  class: verified
+}
+
+Validation: {
+  class: verified
+}
+
+Risk: {
+  class: risk
+  label: "Risk\nManagement"
+}
+
+Stakeholders -> CONOPS: informs
+CONOPS -> Requirements: constrains
+Requirements -> Architecture: shapes
+Architecture -> Interfaces: allocates
+Interfaces -> Verification: verified by
+Verification -> Validation: supports
+
+Risk -> CONOPS: influences {
+  style.stroke-dash: 4
+}
+Risk -> Requirements: mitigates {
+  style.stroke-dash: 4
+}
+Risk -> Verification: checked by {
+  style.stroke-dash: 4
+}
+
+classes: {
+  artifact: {
+    style: {
+      fill: "#FAF8F3"
+      stroke: "#161616"
+      stroke-width: 1
+      border-radius: 4
+      font-color: "#161616"
+    }
+  }
+  risk: {
+    style: {
+      fill: "#FAF8F3"
+      stroke: "#8A5A44"
+      stroke-width: 2
+      border-radius: 4
+      font-color: "#161616"
+    }
+  }
+  verified: {
+    style: {
+      fill: "#FAF8F3"
+      stroke: "#68736D"
+      stroke-width: 2
+      border-radius: 4
+      font-color: "#161616"
+    }
+  }
+}

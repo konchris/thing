@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="220" viewBox="0 0 960 220" role="img" aria-labelledby="title desc">
+  <title id="title">THING dark README header</title>
+  <desc id="desc">Dark README header for terminal-oriented contexts.</desc>
+  <rect width="960" height="220" fill="#252A2E"/>
+  <g fill="none" stroke="#8B8780" stroke-opacity="0.42" stroke-width="1.5">
+    <path d="M620 44h110v48h-110z"/>
+    <path d="M762 44h110v48h-110z"/>
+    <path d="M620 128h110v48h-110z"/>
+    <path d="M762 128h110v48h-110z"/>
+    <path d="M730 68h32"/>
+    <path d="M675 92v36"/>
+    <path d="M817 92v36"/>
+    <path d="M730 152h32"/>
+  </g>
+  <g transform="translate(64 46)" color="#F3F1EC">
+    <rect width="128" height="128" rx="20" fill="none" stroke="#8B8780" stroke-opacity="0.55"/>
+
+  <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="64" cy="64" r="44"/>
+    <circle cx="64" cy="64" r="24"/>
+    <path d="M64 20v88"/>
+    <path d="M64 40h18c13 0 22 9 22 22s-9 22-22 22H64"/>
+    <path d="M34 64h60"/>
+    <circle cx="64" cy="20" r="4" fill="currentColor" stroke="none"/>
+    <circle cx="34" cy="64" r="4" fill="currentColor" stroke="none"/>
+    <circle cx="94" cy="64" r="4" fill="currentColor" stroke="none"/>
+    <circle cx="64" cy="108" r="4" fill="currentColor" stroke="none"/>
+  </g>
+
+  </g>
+  <text x="226" y="98"
+        font-family="IBM Plex Sans, Inter, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"
+        font-size="52"
+        font-weight="700"
+        letter-spacing="6"
+        fill="#F3F1EC">ÞING</text>
+  <text x="228" y="134"
+        font-family="IBM Plex Mono, SFMono-Regular, Consolas, Liberation Mono, monospace"
+        font-size="18"
+        letter-spacing="1.2"
+        fill="#C9C5BD">Systems Engineering Workflow Library</text>
+  <text x="228" y="164"
+        font-family="IBM Plex Mono, SFMono-Regular, Consolas, Liberation Mono, monospace"
+        font-size="18"
+        letter-spacing="1.2"
+        fill="#C9C5BD">for AI Coding Agents</text>
+  <line x1="64" y1="198" x2="896" y2="198" stroke="#8B8780" stroke-opacity="0.55" stroke-width="1"/>
+</svg>

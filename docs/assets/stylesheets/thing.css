@@ -1,0 +1,33 @@
+:root {
+  /* THING Color Tokens */
+  --thing-bg: #F3F1EC; /* Primary documentation background / parchment off-white */
+  --thing-surface: #FAF8F3; /* Cards, README panels, light surfaces */
+  --thing-ink: #161616; /* Primary text, logo, high-contrast linework */
+  --thing-iron: #252A2E; /* Dark UI backgrounds, terminal panels */
+  --thing-stone: #6E6B67; /* Secondary text, muted labels */
+  --thing-line: #C9C5BD; /* Rules, dividers, diagram grid lines */
+  --thing-line-strong: #8B8780; /* Diagram emphasis lines and outlines */
+  --thing-indigo: #273248; /* Primary accent; serious, technical, calm */
+  --thing-violet: #4A4458; /* Secondary accent; scholarly, restrained */
+  --thing-moss: #68736D; /* Optional semantic accent for stable/approved states */
+  --thing-risk: #8A5A44; /* Optional restrained warning/risk accent */
+  --thing-white: #FFFFFF; /* Pure white only when platform constraints require it */
+}
+
+.thing-doc-light {
+  background: var(--thing-bg);
+  color: var(--thing-ink);
+}
+
+.thing-doc-dark {
+  background: var(--thing-iron);
+  color: var(--thing-bg);
+}
+
+.thing-muted {
+  color: var(--thing-stone);
+}
+
+.thing-line {
+  border-color: var(--thing-line);
+}

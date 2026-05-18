@@ -1,0 +1,41 @@
+{
+  "file_naming": "lower-case kebab-case",
+  "heading_style": "ATX markdown headings",
+  "ids": {
+    "stakeholder": "STK",
+    "conops": "CONOPS",
+    "non_functional_requirement": "NFR",
+    "architecture": "ARCH",
+    "interface": "IF",
+    "risk": "RISK",
+    "verification": "VER",
+    "validation": "VAL",
+    "decision": "ADR"
+  },
+  "status_values": [
+    "draft",
+    "stable",
+    "deprecated"
+  ],
+  "page_types": [
+    "guide",
+    "concept",
+    "workflow",
+    "reference",
+    "example",
+    "decision"
+  ],
+  "tone": [
+    "engineering handbook",
+    "Unix manual",
+    "systems architecture note",
+    "disciplined project notebook"
+  ],
+  "avoid": [
+    "AI hype",
+    "startup slogans",
+    "enterprise consulting language",
+    "emoji-heavy documentation",
+    "decorative diagrams"
+  ]
+}
