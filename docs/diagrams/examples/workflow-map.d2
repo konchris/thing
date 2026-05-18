@@ -1,0 +1,64 @@
+# THING workflow map
+# Render with: d2 workflow-map.d2 workflow-map.svg
+
+direction: down
+
+Frame: {
+  label: "1. Frame\nengineering intent"
+  class: artifact
+}
+
+Elicit: {
+  label: "2. Elicit\nstructure"
+  class: artifact
+}
+
+Record: {
+  label: "3. Record\ndurable artifacts"
+  class: accent
+}
+
+Trace: {
+  label: "4. Trace\nrelationships"
+  class: artifact
+}
+
+Verify: {
+  label: "5. Check\nquality criteria"
+  class: verified
+}
+
+Frame -> Elicit
+Elicit -> Record
+Record -> Trace
+Trace -> Verify
+
+classes: {
+  artifact: {
+    style: {
+      fill: "#FAF8F3"
+      stroke: "#161616"
+      stroke-width: 1
+      border-radius: 4
+      font-color: "#161616"
+    }
+  }
+  accent: {
+    style: {
+      fill: "#FAF8F3"
+      stroke: "#273248"
+      stroke-width: 2
+      border-radius: 4
+      font-color: "#161616"
+    }
+  }
+  verified: {
+    style: {
+      fill: "#FAF8F3"
+      stroke: "#68736D"
+      stroke-width: 2
+      border-radius: 4
+      font-color: "#161616"
+    }
+  }
+}

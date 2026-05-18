@@ -1,0 +1,87 @@
+# THING context / boundary diagram
+# Render with: d2 system-context.d2 system-context.svg
+
+direction: right
+
+User: "Maintainer / Engineer" {
+  shape: person
+}
+
+AI: "AI Coding Agent" {
+  class: actor
+}
+
+THING: {
+  label: "THING\nWorkflow Library"
+  class: boundary
+
+  Commands: "Markdown\ncommands" {
+    class: artifact
+  }
+
+  Templates: "Artifact\ntemplates" {
+    class: artifact
+  }
+
+  Trace: "Traceability\nstructure" {
+    class: artifact
+  }
+}
+
+Repo: "Software Repository" {
+  class: system
+}
+
+Docs: "Engineering Docs" {
+  class: system
+}
+
+User -> AI: directs
+AI -> Commands: follows
+Commands -> Templates: produces
+Templates -> Trace: links
+Trace -> Repo: constrains
+Trace -> Docs: records
+
+classes: {
+  actor: {
+    style: {
+      fill: "#FAF8F3"
+      stroke: "#6E6B67"
+      stroke-width: 1
+      border-radius: 4
+      font-color: "#161616"
+    }
+  }
+
+  artifact: {
+    style: {
+      fill: "#FAF8F3"
+      stroke: "#161616"
+      stroke-width: 1
+      border-radius: 4
+      font-color: "#161616"
+    }
+  }
+
+  system: {
+    style: {
+      fill: "#F3F1EC"
+      stroke: "#273248"
+      stroke-width: 2
+      border-radius: 4
+      font-color: "#161616"
+    }
+  }
+
+  boundary: {
+    style: {
+      fill: "#F3F1EC"
+      stroke: "#8B8780"
+      stroke-width: 1
+      stroke-dash: 4
+      border-radius: 6
+      font-color: "#161616"
+    }
+  }
+}
