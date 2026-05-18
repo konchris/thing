@@ -120,11 +120,23 @@ at any time.
 | Simple internal change; no system boundary crossings | Path D: Standard Spec-Kit only |
 
 ```mermaid
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "background": "#F3F1EC",
+    "primaryColor": "#FAF8F3",
+    "primaryTextColor": "#161616",
+    "primaryBorderColor": "#161616",
+    "lineColor": "#6E6B67",
+    "secondaryColor": "#F3F1EC",
+    "tertiaryColor": "#C9C5BD"
+  }
+}}%%
 flowchart TD
-    classDef decision fill:#fff8e1,stroke:#F57F17,color:#000
-    classDef thing    fill:#f3e5f5,stroke:#7B1FA2,color:#000
-    classDef speckit  fill:#e3f2fd,stroke:#1976D2,color:#000
-    classDef gate     fill:#fff8e1,stroke:#F57F17,color:#000
+    classDef decision fill:#FAF8F3,stroke:#8A5A44,color:#161616
+    classDef thing    fill:#FAF8F3,stroke:#273248,color:#161616
+    classDef speckit  fill:#F3F1EC,stroke:#6E6B67,color:#161616
+    classDef gate     fill:#FAF8F3,stroke:#68736D,color:#161616
 
     START([New feature]) --> Q1{"System-level SE artifacts<br/>(ConOps, NFRs, architecture)<br/>already exist?"}:::decision
     Q1 -->|No| A["Path A — Full SE<br/>Phases 0–6<br/>New system or regulated baseline"]:::thing
@@ -140,34 +152,19 @@ decision criteria and command sequence for each path.
 
 ---
 
-## Command Reference
+## Command Overview
 
-The table below covers THING commands only. Spec-Kit's native skills
-(`speckit.tasks`, `speckit.analyze`, `speckit.implement`) are used
-unchanged in phases 4–5. `speckit.specify` and `speckit.plan` are
-**not used** in the SE feature workflow — they are replaced by
-`se-requirements` and `se-plan` respectively. They remain available
-for standard (non-SE) Spec-Kit features, where THING hooks augment
-them.
+THING commands are organized around a systems engineering lifecycle:
 
-| Command | Phase | Spec-Kit Relationship | Purpose |
-| ------- | ----- | --------------------- | ------- |
-| `se-constitution` | 0 | Hook — runs after `speckit.constitution` | Establish governing document with domain context, standards, development principles, and SE workflow obligations |
-| `se-stakeholders` | 0 | New — no Spec-Kit equivalent | Elicit stakeholder needs via structured interview — produces personas, empathy maps, and needs register |
-| `se-conops` | 0 | New — no Spec-Kit equivalent | Define Concept of Operations — operational scenarios, modes, and success criteria |
-| `se-nfr` | 1 | New — no Spec-Kit equivalent | Elicit non-functional requirements across all ISO 25010 quality categories — seeds V&V plan |
-| `se-explore` | 1 | New — no Spec-Kit equivalent | Set-Based Design — define parallel solution options, schedule integration points, record elimination evidence |
-| `se-requirements` | 2 | Replaces `speckit.specify` for SE features — SE features have no `spec.md` | Derive functional requirements from ConOps, NFRs, and explore convergence — applies IEEE 29148 inline, writes requirements register, seeds V&V plan and RTM |
-| `se-req-quality` | 2 | Runs after `se-requirements`; also hooks after `speckit.specify` for standard Spec-Kit features | Apply IEEE 29148 quality gate to the requirements register — checks all eight quality attributes, produces quality report |
-| `se-plan` | 3 | Replaces `speckit.plan` for SE features — SE features have no `spec.md` | Generate SE feature plan from ConOps, NFRs, explore, and requirements — writes `07-plan/plan.md` for `se-architecture` to consume |
-| `se-architecture` | 3 | Runs after `se-plan`; also hooks after `speckit.plan` for standard Spec-Kit features | Generate multi-view architecture documentation — C4 diagrams, functional flow, deployment, ADRs |
-| `se-interfaces` | 3 | New — no Spec-Kit equivalent | Define Interface Control Document — all interfaces at every system boundary |
-| `se-tasks` | 4 | Replaces `speckit.tasks` for SE features — SE features have no `spec.md` | Generate implementation task list from requirements register and plan — organises tasks by requirement (FR-NNN), writes `08-tasks/tasks.md`, updates RTM Task Ref column |
-| `se-analyze` | 4 | Replaces `speckit.analyze` for SE features — SE features have no `spec.md` | Cross-artifact consistency analysis — checks requirements register, plan, tasks, and RTM for gaps, ambiguities, terminology drift, and constitution violations |
-| `se-vvplan` | 6 | New — no Spec-Kit equivalent | Finalise V&V plan — audit coverage, add validation scenarios, define execution sequence |
-| `se-rtm` | 4–6 | Hook (phases 4–5) after `speckit.tasks` and `speckit.implement`; finalised explicitly in phase 6 | Maintain and finalise Requirements Traceability Matrix — audit all four traceability chains, produce traceability report |
-| `se-risk` | 6 | New — no Spec-Kit equivalent | Finalise risk register — disposition all risks, produce risk closure report |
-| `se-gate` | Each | Hook — runs after `speckit.analyze`; also run explicitly at each phase boundary | Phase gate review — binary pass/fail check before proceeding to next phase |
+| Phase | Representative Commands |
+| ----- | ----------------------- |
+| Stakeholder and operational framing | `se-stakeholders`, `se-conops` |
+| Quality and requirements definition | `se-nfr`, `se-requirements`, `se-req-quality` |
+| Architecture and interfaces | `se-plan`, `se-architecture`, `se-interfaces` |
+| Implementation preparation | `se-tasks`, `se-analyze` |
+| Verification, traceability, and risk | `se-vvplan`, `se-rtm`, `se-risk`, `se-gate` |
+
+See [Command Catalog](docs/reference/command-catalog.md) for the full command reference including Spec-Kit relationships and phase mapping.
 
 ---
 
