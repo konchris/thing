@@ -1,0 +1,52 @@
+{
+  "thing": {
+    "bg": {
+      "value": "#F3F1EC",
+      "role": "Primary documentation background / parchment off-white"
+    },
+    "surface": {
+      "value": "#FAF8F3",
+      "role": "Cards, README panels, light surfaces"
+    },
+    "ink": {
+      "value": "#161616",
+      "role": "Primary text, logo, high-contrast linework"
+    },
+    "iron": {
+      "value": "#252A2E",
+      "role": "Dark UI backgrounds, terminal panels"
+    },
+    "stone": {
+      "value": "#6E6B67",
+      "role": "Secondary text, muted labels"
+    },
+    "line": {
+      "value": "#C9C5BD",
+      "role": "Rules, dividers, diagram grid lines"
+    },
+    "line_strong": {
+      "value": "#8B8780",
+      "role": "Diagram emphasis lines and outlines"
+    },
+    "indigo": {
+      "value": "#273248",
+      "role": "Primary accent; serious, technical, calm"
+    },
+    "violet": {
+      "value": "#4A4458",
+      "role": "Secondary accent; scholarly, restrained"
+    },
+    "moss": {
+      "value": "#68736D",
+      "role": "Optional semantic accent for stable/approved states"
+    },
+    "risk": {
+      "value": "#8A5A44",
+      "role": "Optional restrained warning/risk accent"
+    },
+    "white": {
+      "value": "#FFFFFF",
+      "role": "Pure white only when platform constraints require it"
+    }
+  }
+}

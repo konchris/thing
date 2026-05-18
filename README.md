@@ -1,6 +1,10 @@
-# THING Systems Engineering Pack
+<p align="center">
+  <img src="branding/readme/thing-readme-header.svg" alt="THING — Systems Engineering Workflow Library for AI Coding Agents" width="960">
+</p>
 
-A systems engineering workflow library for AI coding agents.
+# THING
+
+**Systems engineering workflows for AI coding agents.**
 
 THING guides an AI coding agent (Claude Code or equivalent) through a full SE
 lifecycle — stakeholder elicitation, Concept of Operations, non-functional
@@ -131,7 +135,7 @@ flowchart TD
     Q3 -->|No| D["Path D — Spec-Kit only<br/>Internal refactor or tooling change;<br/>no system boundary crossings"]:::speckit
 ```
 
-See [docs/thing-architecture.md](docs/thing-architecture.md) for the full
+See [docs/reference/thing-architecture.md](docs/reference/thing-architecture.md) for the full
 decision criteria and command sequence for each path.
 
 ---

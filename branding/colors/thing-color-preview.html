@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>THING Color Tokens</title>
+  <link rel="stylesheet" href="thing-colors.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 48px;
+      background: var(--thing-bg);
+      color: var(--thing-ink);
+      font-family: Inter, IBM Plex Sans, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    h1 { letter-spacing: 0.18em; font-size: 40px; margin: 0 0 8px; }
+    .subtitle {
+      color: var(--thing-stone);
+      font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+      margin-bottom: 40px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 20px;
+      max-width: 1100px;
+    }
+    .swatch {
+      border: 1px solid var(--thing-line);
+      background: var(--thing-surface);
+      padding: 16px;
+    }
+    .color {
+      height: 96px;
+      border: 1px solid rgba(0,0,0,0.12);
+      margin-bottom: 12px;
+    }
+    .name { font-weight: 700; margin-bottom: 4px; }
+    .hex {
+      font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+      color: var(--thing-stone);
+      font-size: 14px;
+    }
+    .role {
+      margin-top: 8px;
+      color: var(--thing-stone);
+      font-size: 14px;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+  <h1>THING</h1>
+  <div class="subtitle">Color tokens for disciplined visual governance of information.</div>
+  <div class="grid">
+    <div class="swatch">
+      <div class="color" style="background:#F3F1EC"></div>
+      <div class="name">--thing-bg</div>
+      <div class="hex">#F3F1EC</div>
+      <div class="role">Primary documentation background / parchment off-white</div>
+    </div>
+    <div class="swatch">
+      <div class="color" style="background:#FAF8F3"></div>
+      <div class="name">--thing-surface</div>
+      <div class="hex">#FAF8F3</div>
+      <div class="role">Cards, README panels, light surfaces</div>
+    </div>
+    <div class="swatch">
+      <div class="color" style="background:#161616"></div>
+      <div class="name">--thing-ink</div>
+      <div class="hex">#161616</div>
+      <div class="role">Primary text, logo, high-contrast linework</div>
+    </div>
+    <div class="swatch">
+      <div class="color" style="background:#252A2E"></div>
+      <div class="name">--thing-iron</div>
+      <div class="hex">#252A2E</div>
+      <div class="role">Dark UI backgrounds, terminal panels</div>
+    </div>
+    <div class="swatch">
+      <div class="color" style="background:#6E6B67"></div>
+      <div class="name">--thing-stone</div>
+      <div class="hex">#6E6B67</div>
+      <div class="role">Secondary text, muted labels</div>
+    </div>
+    <div class="swatch">
+      <div class="color" style="background:#C9C5BD"></div>
+      <div class="name">--thing-line</div>
+      <div class="hex">#C9C5BD</div>
+      <div class="role">Rules, dividers, diagram grid lines</div>
+    </div>
+    <div class="swatch">
+      <div class="color" style="background:#8B8780"></div>
+      <div class="name">--thing-line-strong</div>
+      <div class="hex">#8B8780</div>
+      <div class="role">Diagram emphasis lines and outlines</div>
+    </div>
+    <div class="swatch">
+      <div class="color" style="background:#273248"></div>
+      <div class="name">--thing-indigo</div>
+      <div class="hex">#273248</div>
+      <div class="role">Primary accent; serious, technical, calm</div>
+    </div>
+    <div class="swatch">
+      <div class="color" style="background:#4A4458"></div>
+      <div class="name">--thing-violet</div>
+      <div class="hex">#4A4458</div>
+      <div class="role">Secondary accent; scholarly, restrained</div>
+    </div>
+    <div class="swatch">
+      <div class="color" style="background:#68736D"></div>
+      <div class="name">--thing-moss</div>
+      <div class="hex">#68736D</div>
+      <div class="role">Optional semantic accent for stable/approved states</div>
+    </div>
+    <div class="swatch">
+      <div class="color" style="background:#8A5A44"></div>
+      <div class="name">--thing-risk</div>
+      <div class="hex">#8A5A44</div>
+      <div class="role">Optional restrained warning/risk accent</div>
+    </div>
+    <div class="swatch">
+      <div class="color" style="background:#FFFFFF"></div>
+      <div class="name">--thing-white</div>
+      <div class="hex">#FFFFFF</div>
+      <div class="role">Pure white only when platform constraints require it</div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+{
+  "colors": {
+    "background": "#F3F1EC",
+    "surface": "#FAF8F3",
+    "ink": "#161616",
+    "iron": "#252A2E",
+    "stone": "#6E6B67",
+    "line": "#C9C5BD",
+    "lineStrong": "#8B8780",
+    "indigo": "#273248",
+    "violet": "#4A4458",
+    "moss": "#68736D",
+    "risk": "#8A5A44"
+  },
+  "stroke": {
+    "normal": 1,
+    "emphasis": 2,
+    "dash": 4
+  },
+  "shapes": {
+    "artifact": "rectangle",
+    "tracePoint": "circle",
+    "boundary": "dashed rectangle",
+    "actor": "person or plain rectangle"
+  },
+  "relationships": {
+    "solidArrow": "flow, dependency, allocation, sequence",
+    "dashedArrow": "trace, influence, mitigation, weak dependency"
+  },
+  "rules": [
+    "Every diagram must answer a real engineering question.",
+    "Every color must have a job.",
+    "Prefer topology over decoration.",
+    "Avoid AI brains, glowing networks, cyberpunk visuals, and generic cloud icons.",
+    "Diagrams must remain readable in monochrome."
+  ]
+}

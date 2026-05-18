@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">THING symbol</title>
+  <desc id="desc">Minimal assembly and topology symbol for the THING systems engineering workflow library.</desc>
+  <rect width="128" height="128" rx="20" fill="#F3F1EC"/>
+  <g color="#161616">
+
+  <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="64" cy="64" r="44"/>
+    <circle cx="64" cy="64" r="24"/>
+    <path d="M64 20v88"/>
+    <path d="M64 40h18c13 0 22 9 22 22s-9 22-22 22H64"/>
+    <path d="M34 64h60"/>
+    <circle cx="64" cy="20" r="4" fill="currentColor" stroke="none"/>
+    <circle cx="34" cy="64" r="4" fill="currentColor" stroke="none"/>
+    <circle cx="94" cy="64" r="4" fill="currentColor" stroke="none"/>
+    <circle cx="64" cy="108" r="4" fill="currentColor" stroke="none"/>
+  </g>
+
+  </g>
+</svg>

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="120" viewBox="0 0 760 120" role="img" aria-labelledby="title desc">
+  <title id="title">THING compact README header</title>
+  <desc id="desc">Compact README lockup for THING.</desc>
+  <rect width="760" height="120" fill="#F3F1EC"/>
+  <g transform="translate(32 24) scale(0.56)" color="#161616">
+
+  <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="64" cy="64" r="44"/>
+    <circle cx="64" cy="64" r="24"/>
+    <path d="M64 20v88"/>
+    <path d="M64 40h18c13 0 22 9 22 22s-9 22-22 22H64"/>
+    <path d="M34 64h60"/>
+    <circle cx="64" cy="20" r="4" fill="currentColor" stroke="none"/>
+    <circle cx="34" cy="64" r="4" fill="currentColor" stroke="none"/>
+    <circle cx="94" cy="64" r="4" fill="currentColor" stroke="none"/>
+    <circle cx="64" cy="108" r="4" fill="currentColor" stroke="none"/>
+  </g>
+
+  </g>
+  <text x="122" y="58"
+        font-family="IBM Plex Sans, Inter, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"
+        font-size="38"
+        font-weight="700"
+        letter-spacing="5"
+        fill="#161616">ÞING</text>
+  <text x="124" y="86"
+        font-family="IBM Plex Mono, SFMono-Regular, Consolas, Liberation Mono, monospace"
+        font-size="15"
+        letter-spacing="1"
+        fill="#6E6B67">Systems engineering workflows for AI coding agents.</text>
+  <line x1="32" y1="108" x2="728" y2="108" stroke="#C9C5BD" stroke-width="1"/>
+</svg>

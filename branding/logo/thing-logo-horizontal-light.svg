@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 160" role="img" aria-labelledby="title desc">
+  <title id="title">THING horizontal logo light</title>
+  <desc id="desc">THING logo with circular systems assembly symbol and wordmark.</desc>
+  <rect width="720" height="160" fill="#161616"/>
+  <g transform="translate(32 16)">
+    <g fill="none" stroke="#F3F1EC" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="64" cy="64" r="48"/>
+      <circle cx="64" cy="64" r="23"/>
+      <circle cx="64" cy="64" r="7" fill="#161616"/>
+      <path d="M64 16v25"/>
+      <path d="M64 87v25"/>
+      <path d="M16 64h25"/>
+      <path d="M87 64h25"/>
+      <circle cx="64" cy="16" r="5" fill="#F3F1EC" stroke="none"/>
+      <circle cx="64" cy="112" r="5" fill="#F3F1EC" stroke="none"/>
+      <circle cx="16" cy="64" r="5" fill="#161616"/>
+      <circle cx="112" cy="64" r="5" fill="#161616"/>
+    </g>
+  </g>
+  <text x="192" y="82" fill="#F3F1EC" font-family="IBM Plex Mono, Space Grotesk, Inter, system-ui, sans-serif" font-size="56" font-weight="700" letter-spacing="18">THING</text>
+  <text x="195" y="117" fill="#C9C5BD" font-family="IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" font-weight="500" letter-spacing="3">SYSTEMS ENGINEERING WORKFLOW LIBRARY</text>
+</svg>
