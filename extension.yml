@@ -1,0 +1,119 @@
+# extension.yml — Spec-Kit integration shim
+#
+# This file registers THING with Spec-Kit's extension mechanism.
+# It is OPTIONAL. THING functions without it.
+#
+# If Spec-Kit is not in use, ignore this file.
+# THING commands are invoked directly by the AI agent reading the
+# command files in commands/ or via the /thing.{name} slash commands
+# registered by this file when Spec-Kit is present.
+#
+# Installation with Spec-Kit:
+#   specify extension add https://github.com/konchris/thing
+#
+# Installation without Spec-Kit (recommended):
+#   git submodule add https://github.com/konchris/thing .thing
+
+schema_version: "1.0"
+extension:
+  id: "thing"
+  name: "THING Systems Engineering Pack"
+  version: "0.2.0"
+  description: "SE Handbook-aligned workflow library for AI coding agents.
+    Adds stakeholder elicitation, ConOps, NFRs, Set-Based Design, interface
+    control, architecture-as-code, requirements quality gates, V&V planning,
+    RTM, and risk management. Works standalone or integrated with Spec-Kit."
+  author: "Christopher Espy"
+  license: "MIT"
+
+requires:
+  speckit_version: ">=0.2.0"
+
+provides:
+  commands:
+    - name: "thing.se-constitution"
+      file: "commands/se-constitution.md"
+      description: "Generate a THING-aligned constitution"
+    - name: "thing.se-stakeholders"
+      file: "commands/se-stakeholders.md"
+      description: "Elicit and structure stakeholder needs"
+    - name: "thing.se-conops"
+      file: "commands/se-conops.md"
+      description: "Draft Concept of Operations and operational scenarios"
+    - name: "thing.se-nfr"
+      file: "commands/se-nfr.md"
+      description: "Elicit and classify non-functional requirements"
+    - name: "thing.se-explore"
+      file: "commands/se-explore.md"
+      description: "Set-Based Design option exploration and elimination"
+    - name: "thing.se-requirements"
+      file: "commands/se-requirements.md"
+      description: "Derive functional requirements from SE artifacts and apply IEEE 29148 quality checks"
+    - name: "thing.se-req-quality"
+      file: "commands/se-req-quality.md"
+      description: "Run IEEE 29148 requirements quality gate"
+    - name: "thing.se-plan"
+      file: "commands/se-plan.md"
+      description: "Generate SE feature plan from ConOps, NFRs, and explore artifacts"
+    - name: "thing.se-architecture"
+      file: "commands/se-architecture.md"
+      description: "Generate architecture-as-code and ADRs"
+    - name: "thing.se-interfaces"
+      file: "commands/se-interfaces.md"
+      description: "Define interface control documents"
+    - name: "thing.se-tasks"
+      file: "commands/se-tasks.md"
+      description: "Generate implementation task list from requirements register and plan"
+    - name: "thing.se-analyze"
+      file: "commands/se-analyze.md"
+      description: "Cross-artifact consistency analysis for SE features"
+    - name: "thing.se-vvplan"
+      file: "commands/se-vvplan.md"
+      description: "Finalise Verification and Validation plan"
+    - name: "thing.se-rtm"
+      file: "commands/se-rtm.md"
+      description: "Build and finalise Requirements Traceability Matrix"
+    - name: "thing.se-risk"
+      file: "commands/se-risk.md"
+      description: "Finalise risk register"
+    - name: "thing.se-gate"
+      file: "commands/se-gate.md"
+      description: "Run SE phase gate review"
+
+hooks:
+  after_constitution:
+    - command: thing.se-constitution
+      optional: true
+      prompt: "Update the SE constitution with any changes made."
+
+  after_specify:
+    - command: thing.se-req-quality
+      optional: false
+      prompt: "Run the requirements quality gate on the updated specification."
+
+  after_plan:
+    - command: thing.se-architecture
+      optional: true
+      prompt: "Update architecture documentation to reflect the new plan."
+
+  after_tasks:
+    - command: thing.se-rtm
+      optional: false
+      prompt: "Update the RTM with task references for all requirements."
+
+  after_implement:
+    - command: thing.se-rtm
+      optional: false
+      prompt: "Update the RTM with implementation references."
+
+  after_analysis:
+    - command: thing.se-gate
+      optional: true
+      prompt: "Run the current phase gate to check completion before proceeding."
+
+tags:
+  - "systems-engineering"
+  - "thing"
+  - "requirements"
+  - "traceability"
+  - "risk"
