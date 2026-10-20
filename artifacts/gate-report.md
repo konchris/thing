@@ -27,6 +27,20 @@
 
 ---
 
+## Baseline Currency
+
+**Change list sources:** TBD
+
+| Change | Kind | Statements Checked (file § statement) | Result |
+| ------ | ---- | ------------------------------------- | ------ |
+
+*Every service, interface, behaviour or constraint the feature
+added, removed or changed, with the system-artifact statements
+checked for it. "No existing entries affected" is only valid
+with this table filled in.*
+
+---
+
 ## Failures — Action Required
 
 *One section per failed check — populated by se-gate skill.*

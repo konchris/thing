@@ -18,6 +18,7 @@ Output artifacts:
 - `specs/system/00-stakeholders/empathy-maps/{stakeholder-id}.md`
 - `specs/system/00-stakeholders/needs-register.md`
 - `specs/system/10-risk/risk-register.md` (updated with elicitation assumptions)
+- `specs/features/$FEATURE_ID/00-stakeholders/stakeholders-delta.md` (feature delta)
 
 ## Pre-Conditions
 
@@ -28,6 +29,87 @@ Output artifacts:
 System artifacts always live at `specs/system/` regardless of
 which feature is currently being worked. The constitution's
 Artifact Structure section is the authoritative path reference.
+
+## Baseline-Update Mode
+
+The system-level artifacts this skill writes are a baseline: one
+current description of the whole system, not a log of features.
+This applies to:
+
+- `specs/system/00-stakeholders/stakeholder-register.md`
+- `specs/system/00-stakeholders/needs-register.md`
+- `specs/system/00-stakeholders/personas/{stakeholder-id}.md`
+- `specs/system/00-stakeholders/empathy-maps/{stakeholder-id}.md`
+
+and to every edit this skill makes to a threaded artifact (risk
+register, V&V plan, RTM).
+
+Before writing, check whether each artifact already exists.
+
+- **Does not exist** — this is the first feature to touch it.
+  Write it from the template in the Instructions below.
+- **Exists** — merge into it. Never add a section for this feature
+  (no "§7 Feature 011", no "Feature 012 additions") and never
+  write a second copy of a table that already exists.
+
+When merging:
+
+1. Read the existing artifact in full before changing anything.
+2. Stakeholders, needs and conflicts each live in one table for
+   the whole system. Personas and empathy maps are one file per
+   stakeholder; edit the existing file rather than writing a
+   second one.
+3. Add new rows to the existing table. Edit changed rows in place;
+   where the history matters, add
+   "revised {YYYY-MM-DD}, {feature ID}" to the row's notes.
+4. Retire rows that are no longer true: strike through the text
+   (`~~…~~`), mark it `Retired` in its status column, or after its
+   name where the table has none, and keep the row so its ID stays
+   reserved. Record the reason in the feature delta, not in the
+   baseline.
+5. Rewrite prose so it describes the system as it is after this
+   feature. A sentence this feature has made untrue is corrected,
+   not left standing beside a newer one.
+6. Keep IDs stable. Never renumber and never reuse an ID. New IDs
+   start at the highest existing ID + 1.
+7. Set the header to `**Baseline as of:** {feature ID}, {date}`.
+
+Then list the services, interfaces, behaviours and constraints
+this feature adds, removes or changes. Search the artifacts of
+this and earlier development steps for statements about each
+one:
+
+- `specs/system/00-stakeholders/`
+- `specs/system/10-risk/risk-register.md` (threaded; this skill updates it)
+
+Correct every statement in them that the feature has made
+untrue, including in artifacts that earlier skills own.
+Re-assess every risk, V&V entry or RTM row in the artifacts
+above whose mitigation or subject the feature removes or
+changes.
+
+Do not search or edit the artifacts of later development steps
+(`01-conops/`, `02-nfr/`, `04-requirements/`, `05-architecture/`,
+`06-interfaces/`, `09-vv/` under `specs/system/`). Their skills
+bring them up to date when they run for this feature, and each
+phase gate checks them.
+
+Finally, write the feature delta
+`specs/features/$FEATURE_ID/00-stakeholders/stakeholders-delta.md`
+using the template at `artifacts/baseline-delta.md`. If it already
+exists (this skill ran earlier for the same feature), append to
+its tables. Record:
+
+- **System Changes** — the list above
+- **Baseline Edits** — one row per item or prose section added,
+  changed or retired, in any artifact listed above, with the
+  reason
+- **Statements Checked** — existing statements reviewed against
+  the System Changes and left unchanged because they are still
+  true
+
+Write the delta on the first feature too; there every edit is
+`Added`.
 
 ## Instructions
 
@@ -157,14 +239,15 @@ Document any conflicts identified for resolution in `/se-conops`.
 
 #### 7a — Stakeholder Register
 
-Write `specs/system/00-stakeholders/stakeholder-register.md`:
+Write `specs/system/00-stakeholders/stakeholder-register.md`, or
+merge into it if it exists (see Baseline-Update Mode):
 
 ```markdown
 # Stakeholder Register
 
 **System:** {system name}
-**Feature:** {feature ID and name}
-**Date:** {date}
+**Baseline as of:** {feature ID}, {date}
+**Feature deltas:** `specs/features/*/**/*-delta.md`
 **Status:** DRAFT
 **Last Updated By:** se-stakeholders skill
 
@@ -186,8 +269,9 @@ needs must be inferred or researched rather than elicited directly}
 
 #### 7b — Persona Cards
 
-For each stakeholder, write
-`specs/system/00-stakeholders/personas/{stakeholder-id}.md`:
+For each new stakeholder, write
+`specs/system/00-stakeholders/personas/{stakeholder-id}.md`.
+For an existing stakeholder, edit their persona in place:
 
 ```markdown
 # Persona: {Role Name}
@@ -223,8 +307,9 @@ For each stakeholder, write
 
 #### 7c — Empathy Maps
 
-For each stakeholder, write
-`specs/system/00-stakeholders/empathy-maps/{stakeholder-id}.md`:
+For each new stakeholder, write
+`specs/system/00-stakeholders/empathy-maps/{stakeholder-id}.md`.
+For an existing stakeholder, edit their empathy map in place:
 
 ```markdown
 # Empathy Map: {Role Name}
@@ -268,14 +353,15 @@ about this stakeholder for the design team.}
 
 #### 7d — Needs Register
 
-Write `specs/system/00-stakeholders/needs-register.md`:
+Write `specs/system/00-stakeholders/needs-register.md`, or merge
+into it if it exists (see Baseline-Update Mode):
 
 ```markdown
 # Needs Register
 
 **System:** {system name}
-**Feature:** {feature ID and name}
-**Date:** {date}
+**Baseline as of:** {feature ID}, {date}
+**Feature deltas:** `specs/features/*/**/*-delta.md`
 **Status:** DRAFT
 **Last Updated By:** se-stakeholders skill
 
@@ -346,3 +432,7 @@ Report to the user:
 5. List of any gaps — stakeholders with no needs, or needs
    marked TBD
 6. Recommended next skill: `/thing.se-conops`
+
+Also report the feature delta path, the number of baseline
+items added, changed and retired, and every statement corrected
+in an artifact this skill does not own.

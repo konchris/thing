@@ -1,8 +1,8 @@
 # Architecture Documentation
 
 **System:** TBD
-**Feature:** TBD
-**Date:** TBD
+**Baseline as of:** TBD
+**Feature deltas:** `specs/features/*/**/*-delta.md`
 **Status:** DRAFT
 **Last Updated By:** TBD
 **Notation:** C4 Model + Views and Beyond + arc42

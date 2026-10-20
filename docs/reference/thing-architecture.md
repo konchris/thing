@@ -265,6 +265,20 @@ Created once, updated in place with each feature iteration. The RTM gains new
 rows. The risk register gains new entries. Architecture views are extended,
 not replaced.
 
+Each system-level artifact is a single current baseline. A later feature
+merges into the existing tables instead of appending a section of its own:
+changed rows are edited in place, rows that are no longer true are struck
+through and retired (never deleted, IDs never reused), and prose the feature
+has made untrue is rewritten. The header carries
+`**Baseline as of:** {feature ID}, {date}`.
+
+What a feature changed in the baseline, and why, is recorded in a feature
+delta, `specs/features/{feature-id}/{NN-phase}/{name}-delta.md` (template:
+`artifacts/baseline-delta.md`). A skill checks only the system artifacts of
+its own and earlier development steps. Phase gate N runs the Baseline Currency
+Checks over the artifacts of phases 0 to N: deltas exist, each artifact is
+still one document, and no statement is contradicted by the feature.
+
 **Feature-scoped artifacts** (`specs/features/{feature-id}/`) capture the
 exploration and planning work for a single feature. Created fresh per feature.
 Not updated after the feature closes — they are a historical record.
@@ -284,6 +298,7 @@ Not updated after the feature closes — they are a historical record.
 | Plan | Feature | Historical record; closed at feature end |
 | Tasks | Feature | Historical record; closed at feature end |
 | Gate reports | Feature | Audit trail; closed at feature end |
+| Baseline deltas (`*-delta.md`) | Feature | What the feature changed in each system artifact and why; closed at feature end |
 
 ---
 

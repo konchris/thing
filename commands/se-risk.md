@@ -24,6 +24,7 @@ Output artifacts:
 
 - `specs/system/10-risk/risk-register.md` (finalised)
 - `specs/system/10-risk/risk-closure-report.md`
+- `specs/features/$FEATURE_ID/10-risk/risk-delta.md` (feature delta)
 
 Updates:
 
@@ -101,6 +102,82 @@ sign-off for Medium and above.
 **Watch** — monitor the risk for change without active
 handling. Only appropriate for Low risks or risks that
 cannot yet be handled due to insufficient information.
+
+## Baseline-Update Mode
+
+The system-level artifacts this skill writes are a baseline: one
+current description of the whole system, not a log of features.
+This applies to:
+
+- `specs/system/10-risk/risk-register.md`
+
+and to every edit this skill makes to a threaded artifact (risk
+register, V&V plan, RTM).
+
+Before writing, check whether each artifact already exists.
+
+- **Does not exist** — this is the first feature to touch it.
+  Write it from the template in the Instructions below.
+- **Exists** — merge into it. Never add a section for this feature
+  (no "§7 Feature 011", no "Feature 012 additions") and never
+  write a second copy of a table that already exists.
+
+When merging:
+
+1. Read the existing artifact in full before changing anything.
+2. Risks live in one register table for the whole system. Never
+   delete a risk row.
+3. Add new rows to the existing table. Edit changed rows in place;
+   where the history matters, add
+   "revised {YYYY-MM-DD}, {feature ID}" to the row's notes.
+4. Retire rows that are no longer true: strike through the text
+   (`~~…~~`), set the status to `Closed` with the reason in Notes,
+   and keep the row so its ID stays reserved. Record the reason in
+   the feature delta, not in the baseline.
+5. Rewrite prose so it describes the system as it is after this
+   feature. A sentence this feature has made untrue is corrected,
+   not left standing beside a newer one.
+6. Keep IDs stable. Never renumber and never reuse an ID. New IDs
+   start at the highest existing ID + 1.
+7. Set the header to `**Baseline as of:** {feature ID}, {date}`.
+
+Then list the services, interfaces, behaviours and constraints
+this feature adds, removes or changes. Search the artifacts of
+this and earlier development steps for statements about each
+one:
+
+- `specs/system/00-stakeholders/`
+- `specs/system/01-conops/`
+- `specs/system/02-nfr/`
+- `specs/system/04-requirements/`
+- `specs/system/05-architecture/`
+- `specs/system/06-interfaces/`
+- `specs/system/09-vv/`
+- `specs/system/10-risk/`
+- `specs/system/rtm.md`
+
+Correct every statement in them that the feature has made
+untrue, including in artifacts that earlier skills own.
+Re-assess every risk, V&V entry or RTM row in the artifacts
+above whose mitigation or subject the feature removes or
+changes.
+
+Finally, write the feature delta
+`specs/features/$FEATURE_ID/10-risk/risk-delta.md` using the
+template at `artifacts/baseline-delta.md`. If it already exists
+(this skill ran earlier for the same feature), append to its
+tables. Record:
+
+- **System Changes** — the list above
+- **Baseline Edits** — one row per item or prose section added,
+  changed or retired, in any artifact listed above, with the
+  reason
+- **Statements Checked** — existing statements reviewed against
+  the System Changes and left unchanged because they are still
+  true
+
+Write the delta on the first feature too; there every edit is
+`Added`.
 
 ## Instructions
 
@@ -261,15 +338,16 @@ For each risk that cannot be closed:
 
 ### Step 8 — Write Finalised Risk Register
 
-Rewrite `specs/system/10-risk/risk-register.md`
+Rewrite `specs/system/10-risk/risk-register.md` as one register
+for the whole system (see Baseline-Update Mode)
 with complete, audited, dispositioned content:
 
 ```markdown
 # Risk Register
 
 **System:** {system name}
-**Feature:** {feature ID and name}
-**Date:** {date}
+**Baseline as of:** {feature ID}, {date}
+**Feature deltas:** `specs/features/*/**/*-delta.md`
 **Status:** {OPEN | FINALISED | FINALISED WITH CARRIED FORWARD ITEMS}
 **Last Updated By:** se-risk skill
 **Version:** {increment from previous}
@@ -467,3 +545,7 @@ Report to the user:
 7. Recommended next skill:
    `/thing.se-gate 6`
    (final phase gate — the last step before closure)
+
+Also report the feature delta path, the number of baseline
+items added, changed and retired, and every statement corrected
+in an artifact this skill does not own.

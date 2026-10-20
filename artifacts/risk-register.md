@@ -1,8 +1,8 @@
 # Risk Register
 
 **System:** TBD
-**Feature:** TBD
-**Date:** TBD
+**Baseline as of:** TBD
+**Feature deltas:** `specs/features/*/**/*-delta.md`
 **Status:** OPEN
 **Last Updated By:** TBD
 

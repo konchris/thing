@@ -11,13 +11,17 @@ a progress review — it is a binary pass/fail check against defined
 completion criteria. A phase that does not pass its gate does not
 close. Work does not proceed to the next phase until the gate passes.
 
-Gates check two things:
+Gates check three things:
 
 1. **Artifact existence and completeness** — required sequenced
    artifacts for the completed phase exist and contain no
    unresolved TBDs in mandatory fields
 2. **Threaded artifact currency** — threaded artifacts have been
    updated to reflect all work done in the completed phase
+3. **Baseline still true** — no statement in a system-level
+   artifact has been made untrue by this feature, and each system
+   artifact is still one current document rather than a stack of
+   per-feature sections
 
 Output artifacts:
 
@@ -32,6 +36,103 @@ Output artifacts:
   from `$ARGUMENTS`.
 
 If phase number is missing, ask for it before proceeding.
+
+## Baseline Currency Checks — Every Phase
+
+Run these checks at every gate, 0 through 6, in addition to the
+phase-specific checks below. They are NOT APPLICABLE only when no
+`specs/system/` artifact existed before this feature started
+(the first feature on a new system); state that as the rationale.
+
+### Feature Deltas
+
+Each skill that writes to `specs/system/` writes a feature delta
+(template: `artifacts/baseline-delta.md`):
+
+| Phase | Skill | Delta |
+| ----- | ----- | ----- |
+| 0 | se-stakeholders | `specs/features/$FEATURE_ID/00-stakeholders/stakeholders-delta.md` |
+| 0 | se-conops | `specs/features/$FEATURE_ID/01-conops/conops-delta.md` |
+| 1 | se-nfr | `specs/features/$FEATURE_ID/02-nfr/nfr-delta.md` |
+| 2 | se-requirements | `specs/features/$FEATURE_ID/04-requirements/requirements-delta.md` |
+| 3 | se-architecture | `specs/features/$FEATURE_ID/05-architecture/architecture-delta.md` |
+| 3 | se-interfaces | `specs/features/$FEATURE_ID/06-interfaces/interfaces-delta.md` |
+| 6 | se-vvplan | `specs/features/$FEATURE_ID/09-vv/vv-delta.md` |
+| 6 | se-rtm | `specs/features/$FEATURE_ID/rtm-delta.md` |
+| 6 | se-risk | `specs/features/$FEATURE_ID/10-risk/risk-delta.md` |
+
+- [ ] Every skill above that ran in this phase has written its
+      delta. A skill counts as run in this phase if any system
+      artifact it owns has `**Baseline as of:**` set to this
+      feature.
+
+### Artifacts in Scope
+
+Gate N checks the system artifacts of phases 0 through N only.
+Artifacts of later phases are brought up to date by their skills
+and checked at their own gate.
+
+| Gate | System artifacts in scope |
+| ---- | ------------------------- |
+| 0 | `specs/system/00-stakeholders/`, `specs/system/01-conops/`, `specs/system/10-risk/risk-register.md` |
+| 1 | Gate 0 scope + `specs/system/02-nfr/`, `specs/system/09-vv/vv-plan.md` |
+| 2 | Gate 1 scope + `specs/system/04-requirements/`, `specs/system/rtm.md` |
+| 3, 4, 5 | Gate 2 scope + `specs/system/05-architecture/`, `specs/system/06-interfaces/` |
+| 6 | All of `specs/system/` |
+
+"In scope" below means the artifacts listed for this gate.
+
+### One Baseline
+
+- [ ] No artifact in scope contains a section headed
+      by a feature ID or feature name (e.g. "§7 Feature 011",
+      "Feature 012 additions", "Changes in 008")
+- [ ] No artifact in scope contains a second copy of
+      a concept table: one modes table, one success-criteria
+      table, one open-issues table, one needs table, one
+      requirements table, one interface register, one risk
+      register table, one V&V plan table, one RTM matrix
+- [ ] Every system artifact edited in this feature has its
+      header set to `**Baseline as of:** {this feature ID}, {date}`
+
+### Baseline Still True
+
+Do not rely on the feature deltas alone — they are written by
+the same agent whose work is being checked.
+
+1. Build the change list: every service, component, interface,
+   mode, behaviour or constraint this feature adds, removes or
+   changes. Sources: the System Changes tables of every delta in
+   `specs/features/$FEATURE_ID/`, the feature's plan, tasks,
+   explore summary and gate reports so far, ADRs whose `Feature`
+   is this feature, and, from Phase 5 on, the implementation
+   changes on the feature branch.
+2. For each entry, search the artifacts in scope for statements
+   about it — by name, ID and obvious synonyms (e.g. for a
+   decommissioned notification service: "notification", "push",
+   "alert", its container name, its IF-IDs).
+3. Classify each statement found: still true, or contradicted
+   by the feature.
+
+- [ ] No statement in an artifact in scope is contradicted by
+      the feature. Each contradiction is a separate FAIL citing the
+      file, section and statement.
+- [ ] Every risk whose mitigation or handling relies on
+      something the feature removes or changes has been
+      re-assessed (re-scored, re-opened, or closed with
+      rationale) in `specs/system/10-risk/risk-register.md`
+- [ ] Every V&V plan entry and RTM row in scope whose subject the feature
+      removes has been marked `Superseded` or `Retired` with a
+      reason, not deleted and not left `Planned`
+
+The gate report must list each change-list entry with the
+statements checked for it (see the Baseline Currency section of
+the report template). A gate report may not state that no
+existing requirements, risks, interfaces or other baseline
+entries are affected without that list. Such a statement with
+no list is itself a FAIL.
+
+---
 
 ## Gate Criteria by Phase
 
@@ -356,6 +457,11 @@ phase. For each check:
 Do not skip checks. Do not mark a check PASS without
 examining the artifact.
 
+Run the Baseline Currency Checks for every phase, then the
+phase-specific checks. Record the change list and every
+statement checked in the Baseline Currency section of the
+report.
+
 ### Step 3 — Calculate Gate Result
 
 The gate PASSES only if:
@@ -403,6 +509,19 @@ important findings.}
 | ----- | -------- | ------ | ----- |
 | Constitution exists | `.specify/memory/constitution.md` | PASS | |
 | ... | | | |
+
+---
+
+## Baseline Currency
+
+**Change list sources:** {deltas, plan, tasks, ADRs, diff — list what was read}
+
+| Change | Kind | Statements Checked (file § statement) | Result |
+| ------ | ---- | ------------------------------------- | ------ |
+| {e.g. notification service} | Removed | `conops.md` §2 "no push-notification path"; `risk-register.md` RISK-014 mitigation | FAIL — contradicted |
+
+{Every entry in the change list appears here. "No existing
+entries affected" is only valid with this table filled in.}
 
 ---
 

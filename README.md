@@ -204,20 +204,55 @@ specs/
 │   └── rtm.md
 └── features/
     └── {feature-id}-{feature-name}/  # Feature-scoped artifacts — one set per feature
+        ├── 00-stakeholders/
+        │   └── stakeholders-delta.md    # Baseline delta (see below)
+        ├── 01-conops/
+        │   └── conops-delta.md
+        ├── 02-nfr/
+        │   └── nfr-delta.md
         ├── 03-explore/
         │   ├── explore-summary.md
         │   ├── option-{id}/
         │   └── elimination-record.md
+        ├── 04-requirements/
+        │   └── requirements-delta.md
+        ├── 05-architecture/
+        │   └── architecture-delta.md
+        ├── 06-interfaces/
+        │   └── interfaces-delta.md
         ├── 07-plan/
         │   └── plan.md
         ├── 08-tasks/
         │   └── tasks.md
+        ├── 09-vv/
+        │   └── vv-delta.md
+        ├── 10-risk/
+        │   └── risk-delta.md
+        ├── rtm-delta.md
         └── gate-reports/
 ```
 
 System-level artifacts describe the system as a whole and are updated
 in place with each feature iteration. Feature-scoped artifacts
 capture the exploration and planning work specific to a single feature.
+
+**Baselines and deltas.** A system-level artifact is one current
+document, not a stack of per-feature sections. When a later feature
+changes it, the skill merges into the existing tables, edits changed
+rows in place, strikes through and retires rows that are no longer
+true, and rewrites prose that the feature has made untrue. IDs stay
+stable and are never reused. The header records
+`**Baseline as of:** {feature ID}, {date}`.
+
+What the feature changed, and why, goes in a `*-delta.md` file in the
+feature folder (template: `artifacts/baseline-delta.md`). Each delta
+lists the system changes (services, interfaces, behaviours and
+constraints added, removed or changed), the baseline edits, and the
+existing statements checked and found still true. Each skill checks
+only the system artifacts of its own and earlier development steps;
+later artifacts are updated when their skill runs. Phase gate N
+checks that no statement in the artifacts of phases 0 to N is
+contradicted by the feature.
 
 ---
 
