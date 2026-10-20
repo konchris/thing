@@ -14,6 +14,7 @@
 **Total Checks:** TBD
 **Passed:** TBD
 **Failed:** TBD
+**Warnings:** TBD
 **Not Applicable:** TBD
 
 *One paragraph summary of the gate result.*
@@ -31,6 +32,8 @@
 
 **Change list sources:** TBD
 
+**Artifacts edited by this feature:** TBD
+
 | Change | Kind | Statements Checked (file § statement) | Result |
 | ------ | ---- | ------------------------------------- | ------ |
 
@@ -44,6 +47,17 @@ with this table filled in.*
 ## Failures — Action Required
 
 *One section per failed check — populated by se-gate skill.*
+
+---
+
+## Warnings
+
+| Artifact | Section or Table | Created By | Consolidated By |
+| -------- | ---------------- | ---------- | --------------- |
+
+*Per-feature sections and split tables written by earlier features.
+They do not fail the gate; the owning skill consolidates them the
+next time it edits the artifact.*
 
 ---
 

@@ -278,6 +278,9 @@ delta, `specs/features/{feature-id}/{NN-phase}/{name}-delta.md` (template:
 its own and earlier development steps. Phase gate N runs the Baseline Currency
 Checks over the artifacts of phases 0 to N: deltas exist, each artifact is
 still one document, and no statement is contradicted by the feature.
+Per-feature sections left by features before this convention are warnings,
+not failures; the owning skill consolidates them the next time it edits the
+artifact.
 
 **Feature-scoped artifacts** (`specs/features/{feature-id}/`) capture the
 exploration and planning work for a single feature. Created fresh per feature.

@@ -139,21 +139,30 @@ Before writing, check whether each artifact already exists.
 When merging:
 
 1. Read the existing artifact in full before changing anything.
-2. Requirements live in one matrix for the whole system. Never
+2. If the artifact still has per-feature sections or split tables
+   from before this convention (e.g. "§7 Feature 011", a second
+   modes table, "Section 6 — … (Feature 009)"), consolidate them
+   as part of this merge: move each row into the one table for
+   its concept, move prose into the section it belongs to, keep
+   every ID, and remove the feature headings. Do not change
+   content while moving it, except to correct statements that are
+   no longer true. Record each fold in the feature delta as
+   `Consolidated`.
+3. Requirements live in one matrix for the whole system. Never
    delete an RTM row.
-3. Add new rows to the existing table. Edit changed rows in place;
+4. Add new rows to the existing table. Edit changed rows in place;
    where the history matters, add
    "revised {YYYY-MM-DD}, {feature ID}" to the row's notes.
-4. Retire rows that are no longer true: strike through the text
+5. Retire rows that are no longer true: strike through the text
    (`~~…~~`), set the Verification Status to `Retired`, and keep
    the row so its ID stays reserved. Record the reason in the
    feature delta, not in the baseline.
-5. Rewrite prose so it describes the system as it is after this
+6. Rewrite prose so it describes the system as it is after this
    feature. A sentence this feature has made untrue is corrected,
    not left standing beside a newer one.
-6. Keep IDs stable. Never renumber and never reuse an ID. New IDs
+7. Keep IDs stable. Never renumber and never reuse an ID. New IDs
    start at the highest existing ID + 1.
-7. Set the header to `**Baseline as of:** {feature ID}, {date}`.
+8. Set the header to `**Baseline as of:** {feature ID}, {date}`.
 
 Then list the services, interfaces, behaviours and constraints
 this feature adds, removes or changes. Search the artifacts of
@@ -183,7 +192,7 @@ ran earlier for the same feature), append to its tables. Record:
 
 - **System Changes** — the list above
 - **Baseline Edits** — one row per item or prose section added,
-  changed or retired, in any artifact listed above, with the
+  changed, retired or consolidated, in any artifact listed above, with the
   reason
 - **Statements Checked** — existing statements reviewed against
   the System Changes and left unchanged because they are still

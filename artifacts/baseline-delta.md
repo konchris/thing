@@ -35,7 +35,7 @@ it has become untrue.*
 
 | Artifact | Item | Edit | Summary | Reason |
 | -------- | ---- | ---- | ------- | ------ |
-| `conops.md` | MODE-003 | Added / Changed / Retired | {what changed in the row or section} | {CHG-ID, REQ-ID or decision that caused it} |
+| `conops.md` | MODE-003 | Added / Changed / Retired / Consolidated | {what changed in the row or section} | {CHG-ID, REQ-ID or decision that caused it} |
 | `conops.md` | §2 External Dependencies | Changed | {sentence revised} | {reason} |
 
 ---
