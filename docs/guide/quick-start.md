@@ -45,7 +45,7 @@ Run these in order. Each produces durable artifacts that the next command reads.
 ## Expected Outputs
 
 | Command | Produces |
-|---|---|
+| --- | --- |
 | `se-stakeholders` | stakeholder register, personas, empathy maps, needs register |
 | `se-conops` | operational scenarios, modes, success criteria |
 | `se-nfr` | quality attribute requirements, V&V plan seeds |
@@ -57,7 +57,7 @@ All outputs are plain Markdown files committed to the repository under `specs/sy
 If the system already has existing SE artifacts, you may not need to start at phase 0.
 
 | Situation | Start here |
-|---|---|
+| --- | --- |
 | New system, no prior artifacts | `se-stakeholders` (Phase 0) |
 | Existing artifacts, new feature with new requirements | `se-requirements` (Phase 2) |
 | Requirements defined, bounded implementation | Standard Spec-Kit + THING hooks |

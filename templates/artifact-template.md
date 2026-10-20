@@ -25,7 +25,7 @@ Out of scope:
 ## Definitions
 
 | Term | Definition |
-|---|---|
+| --- | --- |
 | `<term>` | `<definition>` |
 
 ## Content
@@ -35,17 +35,17 @@ Write the artifact content here.
 ## Decisions
 
 | ID | Decision | Rationale | Date |
-|---|---|---|---|
-| DEC-001 |  |  | YYYY-MM-DD |
+| --- | --- | --- | --- |
+| DEC-001 | | | YYYY-MM-DD |
 
 ## Open Questions
 
 | ID | Question | Owner | Due |
-|---|---|---|---|
-| OQ-001 |  |  |  |
+| --- | --- | --- | --- |
+| OQ-001 | | | |
 
 ## Traceability
 
 | Source | Relationship | Target |
-|---|---|---|
-|  |  |  |
+| --- | --- | --- |
+| | | |

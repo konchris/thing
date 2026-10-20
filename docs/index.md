@@ -23,13 +23,13 @@ Procedural documentation for using THING.
 
 Mental models and engineering background.
 
-*(forthcoming)*
+Forthcoming.
 
 ### Workflows
 
 Per-workflow explanations of what each SE activity does, when to use it, and what good output looks like.
 
-*(forthcoming)*
+Forthcoming.
 
 ### Reference
 
@@ -60,4 +60,4 @@ Documentation structure and authoring conventions for THING artifacts.
 
 Architecture decision records for THING itself.
 
-*(forthcoming)*
+Forthcoming.

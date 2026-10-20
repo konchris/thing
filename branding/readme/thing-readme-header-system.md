@@ -9,7 +9,7 @@ The README should not feel like a landing page. It should feel like the opening 
 ## Included Files
 
 | File | Purpose |
-|---|---|
+| --- | --- |
 | `thing-readme-header.svg` | Primary README header |
 | `thing-readme-header-compact.svg` | Smaller README header for dense pages |
 | `thing-readme-header-dark.svg` | Dark / terminal-oriented variant |

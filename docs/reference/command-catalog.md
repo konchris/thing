@@ -36,7 +36,7 @@ Spec-Kit's native skills (`speckit.tasks`, `speckit.analyze`, `speckit.implement
 ## Phase Mapping
 
 | Phase | Name | Commands |
-|---|---|---|
+| --- | --- | --- |
 | 0 | Problem Space | `se-constitution`, `se-stakeholders`, `se-conops` |
 | 1 | Solution Space | `se-nfr`, `se-explore` |
 | 2 | Requirements | `se-requirements`, `se-req-quality` |

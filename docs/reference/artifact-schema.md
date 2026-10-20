@@ -21,7 +21,7 @@ traces_to:
 ```
 
 | Field | Meaning |
-|---|---|
+| --- | --- |
 | `title` | Human-readable artifact title |
 | `type` | `guide`, `concept`, `workflow`, `reference`, `example`, `decision` |
 | `status` | `draft`, `stable`, `deprecated` |
@@ -34,7 +34,7 @@ traces_to:
 Not every artifact requires every section. Workflow artifacts should strongly prefer this structure.
 
 | Section | Purpose |
-|---|---|
+| --- | --- |
 | Purpose | What engineering uncertainty this artifact reduces |
 | Scope | What is included and excluded |
 | Inputs | Required upstream artifacts or decisions |
@@ -54,7 +54,7 @@ Every major artifact should end with a traceability block.
 ## Traceability
 
 | Source | Relationship | Target |
-|---|---|---|
+| --- | --- | --- |
 | STK-001 | motivates | CONOPS-OP-001 |
 | CONOPS-OP-001 | constrains | NFR-REL-001 |
 | NFR-REL-001 | verified by | VER-TEST-004 |
@@ -63,7 +63,7 @@ Every major artifact should end with a traceability block.
 ## ID Prefixes
 
 | Prefix | Meaning |
-|---|---|
+| --- | --- |
 | `STK` | Stakeholder |
 | `CONOPS` | Concept of Operations |
 | `NFR` | Non-functional requirement |

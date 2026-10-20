@@ -87,7 +87,7 @@ docs/
 THING should distinguish between different types of documentation.
 
 | Page Type | Purpose | Tone |
-|---|---|---|
+| --- | --- | --- |
 | Guide | Teach use | clear, procedural |
 | Concept | Explain mental model | precise, reflective |
 | Workflow | Define repeatable engineering activity | normative, structured |
@@ -122,7 +122,7 @@ traces_to:
 Recommended fields:
 
 | Field | Use |
-|---|---|
+| --- | --- |
 | `title` | Human-readable page title |
 | `type` | `guide`, `concept`, `workflow`, `reference`, `example`, `decision` |
 | `status` | `draft`, `stable`, `deprecated` |
@@ -227,7 +227,7 @@ The system shall complete operator-visible workflow transitions within 500 ms un
 Recommended ID prefixes:
 
 | Prefix | Meaning |
-|---|---|
+| --- | --- |
 | `STK` | Stakeholder |
 | `CONOPS` | Concept of Operations |
 | `NFR` | Non-functional requirement |
@@ -289,7 +289,7 @@ Every major artifact should end with a traceability block.
 ## Traceability
 
 | Source | Relationship | Target |
-|---|---|---|
+| --- | --- | --- |
 | STK-001 | motivates | CONOPS-OP-001 |
 | CONOPS-OP-001 | constrains | NFR-REL-001 |
 | NFR-REL-001 | verified by | VER-TEST-004 |
@@ -306,7 +306,7 @@ THING documentation should explicitly name failure modes.
 Examples:
 
 | Failure Mode | Symptom |
-|---|---|
+| --- | --- |
 | Prompt pack drift | Commands exist, but artifacts do not connect |
 | Requirements theater | Requirements are written but not verifiable |
 | Architecture theater | Diagrams exist without decisions |

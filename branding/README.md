@@ -5,7 +5,7 @@ This directory contains the visual and documentation identity source assets for 
 ## Structure
 
 | Directory | Purpose |
-|---|---|
+| --- | --- |
 | `logo/` | Primary logo and symbol marks — horizontal and symbol, light and dark variants |
 | `favicon/` | Favicon and app icon set — SVG and PNG at standard sizes |
 | `colors/` | Color tokens, CSS custom properties, and palette documentation |
@@ -17,7 +17,7 @@ This directory contains the visual and documentation identity source assets for 
 ## Key Files
 
 | File | Purpose |
-|---|---|
+| --- | --- |
 | `logo/thing-logo-horizontal-dark.svg` | Primary wordmark, dark variant |
 | `logo/thing-logo-horizontal-light.svg` | Primary wordmark, light variant |
 | `logo/thing-symbol-dark.svg` | Symbol only — for avatars and navigation |
@@ -40,7 +40,7 @@ This directory contains the visual and documentation identity source assets for 
 ## Color Tokens Quick Reference
 
 | Token | Hex | Role |
-|---|---|---|
+| --- | --- | --- |
 | `--thing-bg` | `#F3F1EC` | Primary background |
 | `--thing-surface` | `#FAF8F3` | Cards and panels |
 | `--thing-ink` | `#161616` | Primary text and linework |

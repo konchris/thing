@@ -3,7 +3,7 @@
 Key terms used in THING documentation and artifacts.
 
 | Term | Meaning |
-|---|---|
+| --- | --- |
 | Stakeholder | Any person, role, or organization with an interest in the system. |
 | Stakeholder Need | A problem, expectation, or desired outcome from a stakeholder perspective. Needs are not requirements — they are the raw material from which requirements are derived. |
 | Concept of Operations (ConOps) | Description of how the system is expected to be used in operational context — who uses it, under what conditions, in what modes, and with what success criteria. |

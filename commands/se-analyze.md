@@ -230,7 +230,7 @@ Do not write any file.
 ### Findings
 
 | ID | Category | Severity | Location | Summary | Recommendation |
-|----|----------|----------|----------|---------|----------------|
+| ---- | ---------- | ---------- | ---------- | --------- | ---------------- |
 | A1 | Coverage Gap | CRITICAL | FR-007 | No tasks reference FR-007 | Add tasks implementing {requirement text} |
 | B1 | Ambiguity | MEDIUM | requirements-register.md FR-003 | "fast response" lacks measurable criterion | Define response time bound (e.g., ≤ 200ms) |
 
@@ -239,7 +239,7 @@ Do not write any file.
 ### Coverage Summary
 
 | Req ID | Priority | Has Tasks? | Task IDs | Notes |
-|--------|----------|------------|----------|-------|
+| -------- | ---------- | ------------ | ---------- | ------- |
 | FR-001 | Must Have | Yes | T004, T006 | |
 | FR-007 | Must Have | No | — | CRITICAL gap |
 

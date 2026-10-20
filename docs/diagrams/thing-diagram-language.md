@@ -40,7 +40,7 @@ If a diagram only decorates the page, remove it.
 Default visual vocabulary:
 
 | Visual Element | Meaning |
-|---|---|
+| --- | --- |
 | Rectangle | artifact, system element, workflow step |
 | Circle / small node | connector, trace point, decision junction |
 | Solid arrow | flow, dependency, sequence |
