@@ -238,7 +238,7 @@ the container view:
 
 #### Software-Hardware Interfaces (SW-HW)
 
-*(Hardware systems only)*
+Hardware systems only.
 
 For each connection between a software component and a
 hardware element:
@@ -261,7 +261,7 @@ hardware element:
 
 #### Hardware-Hardware Interfaces (HW-HW)
 
-*(Electronics systems only)*
+Electronics systems only.
 
 For each direct hardware-to-hardware connection:
 
@@ -276,7 +276,7 @@ For each direct hardware-to-hardware connection:
 
 #### Power Interfaces (PWR)
 
-*(Hardware systems only)*
+Hardware systems only.
 
 For each power supply interface:
 
@@ -292,7 +292,7 @@ For each power supply interface:
 
 #### Mechanical Interfaces (MECH)
 
-*(Full systems with mechanical content only)*
+Full systems with mechanical content only.
 
 For each mechanical interface:
 
