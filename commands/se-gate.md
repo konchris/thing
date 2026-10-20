@@ -44,27 +44,53 @@ phase-specific checks below. They are NOT APPLICABLE only when no
 `specs/system/` artifact existed before this feature started
 (the first feature on a new system); state that as the rationale.
 
+### Artifacts Edited by This Feature
+
+Several checks below depend on which system artifacts this
+feature edited. Do not rely on the `**Baseline as of:**` header
+alone: artifacts written before that convention do not carry it.
+An artifact counts as edited by this feature if any of these
+holds:
+
+1. Its header says `**Baseline as of:** {this feature ID}`.
+2. Git shows it changed by the feature. While the feature branch
+   is open, compare against the point it branched from:
+   `git diff --name-only $(git merge-base HEAD {base branch})...HEAD -- specs/system/`
+   plus `git status --porcelain -- specs/system/` for uncommitted
+   edits. `{base branch}` is the branch the feature will merge
+   into (usually the repository's default branch). If the feature
+   is already merged, use the feature's merge or pull request
+   commit range instead.
+3. The feature's own artifacts (plan, tasks, gate reports, deltas)
+   say it was updated in this feature.
+
+List the edited artifacts, and the sections or rows the feature
+added to each (from the diff), in the gate report. If git history
+is not available, say so and use 1 and 3 only.
+
 ### Feature Deltas
 
-Each skill that writes to `specs/system/` writes a feature delta
-(template: `artifacts/baseline-delta.md`):
+Each skill that writes to `specs/system/` owns a set of artifacts
+and writes a feature delta (template: `artifacts/baseline-delta.md`):
 
-| Phase | Skill | Delta |
-| ----- | ----- | ----- |
-| 0 | se-stakeholders | `specs/features/$FEATURE_ID/00-stakeholders/stakeholders-delta.md` |
-| 0 | se-conops | `specs/features/$FEATURE_ID/01-conops/conops-delta.md` |
-| 1 | se-nfr | `specs/features/$FEATURE_ID/02-nfr/nfr-delta.md` |
-| 2 | se-requirements | `specs/features/$FEATURE_ID/04-requirements/requirements-delta.md` |
-| 3 | se-architecture | `specs/features/$FEATURE_ID/05-architecture/architecture-delta.md` |
-| 3 | se-interfaces | `specs/features/$FEATURE_ID/06-interfaces/interfaces-delta.md` |
-| 6 | se-vvplan | `specs/features/$FEATURE_ID/09-vv/vv-delta.md` |
-| 6 | se-rtm | `specs/features/$FEATURE_ID/rtm-delta.md` |
-| 6 | se-risk | `specs/features/$FEATURE_ID/10-risk/risk-delta.md` |
+| Phase | Skill | Owns | Delta |
+| ----- | ----- | ---- | ----- |
+| 0 | se-stakeholders | `specs/system/00-stakeholders/` | `specs/features/$FEATURE_ID/00-stakeholders/stakeholders-delta.md` |
+| 0 | se-conops | `specs/system/01-conops/` | `specs/features/$FEATURE_ID/01-conops/conops-delta.md` |
+| 1 | se-nfr | `specs/system/02-nfr/` | `specs/features/$FEATURE_ID/02-nfr/nfr-delta.md` |
+| 2 | se-requirements | `specs/system/04-requirements/requirements-register.md` | `specs/features/$FEATURE_ID/04-requirements/requirements-delta.md` |
+| 3 | se-architecture | `specs/system/05-architecture/` | `specs/features/$FEATURE_ID/05-architecture/architecture-delta.md` |
+| 3 | se-interfaces | `specs/system/06-interfaces/` | `specs/features/$FEATURE_ID/06-interfaces/interfaces-delta.md` |
+| 6 | se-vvplan | `specs/system/09-vv/` | `specs/features/$FEATURE_ID/09-vv/vv-delta.md` |
+| 6 | se-rtm | `specs/system/rtm.md` | `specs/features/$FEATURE_ID/rtm-delta.md` |
+| 6 | se-risk | `specs/system/10-risk/` | `specs/features/$FEATURE_ID/10-risk/risk-delta.md` |
 
-- [ ] Every skill above that ran in this phase has written its
-      delta. A skill counts as run in this phase if any system
-      artifact it owns has `**Baseline as of:**` set to this
-      feature.
+- [ ] For every skill above whose phase is at or before this
+      gate and whose owned artifacts were edited by this feature
+      (see Artifacts Edited by This Feature), the delta exists.
+      Edits to a threaded artifact (risk register, V&V plan, RTM)
+      made by another skill must appear in that skill's delta;
+      they do not require the owner's delta.
 
 ### Artifacts in Scope
 
@@ -84,16 +110,29 @@ and checked at their own gate.
 
 ### One Baseline
 
-- [ ] No artifact in scope contains a section headed
-      by a feature ID or feature name (e.g. "§7 Feature 011",
-      "Feature 012 additions", "Changes in 008")
-- [ ] No artifact in scope contains a second copy of
-      a concept table: one modes table, one success-criteria
-      table, one open-issues table, one needs table, one
-      requirements table, one interface register, one risk
-      register table, one V&V plan table, one RTM matrix
+A per-feature section is a section headed by a feature ID or
+feature name (e.g. "§7 Feature 011", "Feature 012 additions",
+"Changes in 008"). A split table is a second copy of a concept
+table: more than one modes table, success-criteria table,
+open-issues table, needs table, requirements table, interface
+register, risk register table, V&V plan table or RTM matrix.
+
+- [ ] This feature added no per-feature section and no split
+      table to any artifact in scope. Use the diff from Artifacts
+      Edited by This Feature to tell what this feature added.
+      Each one it added is a FAIL.
 - [ ] Every system artifact edited in this feature has its
       header set to `**Baseline as of:** {this feature ID}, {date}`
+
+Per-feature sections and split tables that this feature did not
+add (written by earlier features, before this convention) are
+WARNINGS, not failures. List each one in the Warnings section of
+the report with the artifact and heading. They are consolidated
+by the skill that owns the artifact the next time it edits it
+(Baseline-Update Mode); no manual clean-up is required. If this
+feature edited an artifact that still has such sections, its
+skill should have consolidated them: report that as a FAIL
+against this feature.
 
 ### Baseline Still True
 
@@ -450,7 +489,7 @@ Work through every check in the criteria for the specified
 phase. For each check:
 
 - Examine the relevant artifact
-- Record PASS, FAIL, or NOT APPLICABLE with a brief note
+- Record PASS, FAIL, WARN, or NOT APPLICABLE with a brief note
 - For FAIL: state specifically what is missing or incomplete
   and what action is needed to resolve it
 
@@ -466,10 +505,11 @@ report.
 
 The gate PASSES only if:
 
-- All mandatory checks are PASS or NOT APPLICABLE
+- All mandatory checks are PASS, WARN or NOT APPLICABLE
 - No check is FAIL
 
-The gate FAILS if any check is FAIL.
+The gate FAILS if any check is FAIL. A WARN does not fail the
+gate; it is listed in the Warnings section of the report.
 
 A gate with outstanding items marked NOT APPLICABLE must
 include a documented rationale for each NA — silence is
@@ -496,6 +536,7 @@ Write `specs/features/$FEATURE_ID/gate-reports/gate-{N}-{pass|fail}.md`:
 **Total Checks:** {N}
 **Passed:** {N}
 **Failed:** {N}
+**Warnings:** {N}
 **Not Applicable:** {N}
 
 {One paragraph summary of the gate result and the most
@@ -515,6 +556,8 @@ important findings.}
 ## Baseline Currency
 
 **Change list sources:** {deltas, plan, tasks, ADRs, diff — list what was read}
+
+**Artifacts edited by this feature:** {path — how detected (header, git diff, feature artifacts)}
 
 | Change | Kind | Statements Checked (file § statement) | Result |
 | ------ | ---- | ------------------------------------- | ------ |
@@ -536,6 +579,18 @@ entries affected" is only valid with this table filled in.}
 **Action Required:** {what must be done}
 **Owner:** TBD
 **Must Resolve Before:** Re-running this gate
+
+---
+
+## Warnings
+
+{Per-feature sections and split tables written by earlier
+features. They do not fail the gate; the owning skill
+consolidates them the next time it edits the artifact.}
+
+| Artifact | Section or Table | Created By | Consolidated By |
+| -------- | ---------------- | ---------- | --------------- |
+| | | | |
 
 ---
 

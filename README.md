@@ -254,6 +254,12 @@ later artifacts are updated when their skill runs. Phase gate N
 checks that no statement in the artifacts of phases 0 to N is
 contradicted by the feature.
 
+Documents written before this convention may still contain
+per-feature sections. A skill that edits such a document folds those
+sections into the single tables as part of its merge, so no manual
+clean-up is needed. Until then, the gates report them as warnings;
+only sections a feature adds itself fail the gate.
+
 ---
 
 ## Design Principles
