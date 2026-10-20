@@ -36,6 +36,7 @@ before `/thing.se-gate 4`.
   is automatically CRITICAL.
 
 Optional (read if present):
+
 - `specs/system/05-architecture/architecture.md`
 - `specs/system/02-nfr/quality-attributes.md`
 - `specs/system/00-stakeholders/needs-register.md`
@@ -61,6 +62,7 @@ Optional (read if present):
 Read all pre-condition artifacts. Build internal models of:
 
 **Requirements inventory** — for each requirement in the register:
+
 - Req ID (FR-NNN or NFR-NNN)
 - Full requirement text
 - Priority (Must Have / Should Have / Nice to Have)
@@ -68,22 +70,26 @@ Read all pre-condition artifacts. Build internal models of:
 - Quality Status (PASS / FAIL / PASS WITH WARNINGS)
 
 **Plan model** — from plan.md:
+
 - Component decomposition (component names, purposes)
 - Requirements Coverage Check table (which requirements
   are addressed by which components)
 - Implementation phase structure
 
 **Task model** — from tasks.md:
+
 - All task IDs, their `[FR-NNN]` labels, and descriptions
 - Phase grouping
 - Parallelisable task markers `[P]`
 - Referenced file paths or component names
 
 **RTM model** — from rtm.md:
+
 - Task Ref column state for each requirement
 - Coverage metrics already recorded
 
 **Constitution rules** — from constitution.md:
+
 - All MUST and SHOULD normative statements
 - Technology constraints and exclusions
 
@@ -102,6 +108,7 @@ overflow summary.
 #### Pass A — Coverage Gaps
 
 *For each requirement in the register:*
+
 - Is there at least one task in tasks.md with a `[FR-NNN]`
   label matching this requirement's ID?
 - If not, is the requirement addressed by a task without a
@@ -109,11 +116,13 @@ overflow summary.
 - Flag any requirement with zero task coverage as a gap.
 
 *For each task in tasks.md with a `[FR-NNN]` label:*
+
 - Does that FR-NNN exist in the requirements register?
 - Flag any task referencing a non-existent requirement ID
   as an orphaned task.
 
 *For each requirement in the RTM with Task Ref = TBD or blank:*
+
 - Cross-reference against tasks.md
 - If tasks exist but RTM is not updated, flag as an RTM
   inconsistency (MEDIUM)
@@ -121,6 +130,7 @@ overflow summary.
 #### Pass B — Ambiguity Detection
 
 *In the requirements register:*
+
 - Flag vague adjectives without measurable criteria:
   "fast", "reliable", "secure", "user-friendly", "appropriate",
   "robust", "flexible", "scalable", "intuitive", "adequate"
@@ -129,6 +139,7 @@ overflow summary.
 - Flag unresolved placeholders: TBD, TBC, TODO, ???
 
 *In tasks.md:*
+
 - Flag task descriptions without a specific file path or
   component name (tasks must be specific enough to execute
   without additional context)
@@ -136,6 +147,7 @@ overflow summary.
 #### Pass C — Inconsistency Detection
 
 *Terminology drift:*
+
 - Identify the same concept named differently across
   requirements-register.md, plan.md, and tasks.md
   (e.g., "authentication service" vs "auth module" vs
@@ -143,11 +155,13 @@ overflow summary.
 - Flag each distinct terminology discrepancy
 
 *Plan vs tasks misalignment:*
+
 - Components named in plan.md that have no tasks in tasks.md
 - Implementation phases defined in plan.md that have no
   corresponding task phase
 
 *Task ordering:*
+
 - Tasks marked as parallelisable `[P]` that have an
   unresolved dependency on an incomplete task in the
   same phase
@@ -155,6 +169,7 @@ overflow summary.
 #### Pass D — Constitution Alignment
 
 For each MUST statement in the constitution:
+
 - Is there a requirement, plan decision, or task that
   directly addresses or respects this constraint?
 - Does any requirement, plan choice, or task contradict it?
@@ -163,17 +178,20 @@ For each MUST statement in the constitution:
 #### Pass E — Completeness
 
 *Requirements:*
+
 - Any requirement with Quality Status = FAIL in the register
   that has not been noted as resolved (from se-req-quality)
 - Any requirement with no traced need (NEED-ID blank or TBD)
 - Must Have requirements with no task coverage
 
 *Plan:*
+
 - Any "Open Technical Question" (OTQ) in plan.md that is still
   marked unresolved — flag as HIGH if it affects a Must Have
   requirement
 
 *Tasks:*
+
 - Any task in the Polish phase that is not clearly traceable
   to a specific requirement or quality concern (vague polish
   tasks are LOW)
@@ -212,7 +230,7 @@ Do not write any file.
 ### Findings
 
 | ID | Category | Severity | Location | Summary | Recommendation |
-|----|----------|----------|----------|---------|----------------|
+| ---- | ---------- | ---------- | ---------- | --------- | ---------------- |
 | A1 | Coverage Gap | CRITICAL | FR-007 | No tasks reference FR-007 | Add tasks implementing {requirement text} |
 | B1 | Ambiguity | MEDIUM | requirements-register.md FR-003 | "fast response" lacks measurable criterion | Define response time bound (e.g., ≤ 200ms) |
 
@@ -221,7 +239,7 @@ Do not write any file.
 ### Coverage Summary
 
 | Req ID | Priority | Has Tasks? | Task IDs | Notes |
-|--------|----------|------------|----------|-------|
+| -------- | ---------- | ------------ | ---------- | ------- |
 | FR-001 | Must Have | Yes | T004, T006 | |
 | FR-007 | Must Have | No | — | CRITICAL gap |
 

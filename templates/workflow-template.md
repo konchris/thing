@@ -24,13 +24,13 @@ Use this workflow when:
 ## Inputs
 
 | Input | Description | Required |
-|---|---|---|
+| --- | --- | --- |
 | `<input-artifact>` | Description | yes/no |
 
 ## Outputs
 
 | Output | Description |
-|---|---|
+| --- | --- |
 | `<output-artifact>` | Description |
 
 ## Workflow Steps
@@ -60,13 +60,13 @@ The artifact is acceptable when:
 ## Traceability Hooks
 
 | Source | Relationship | Target |
-|---|---|---|
+| --- | --- | --- |
 | `<source-id>` | motivates / constrains / verifies / mitigates | `<target-id>` |
 
 ## Common Failure Modes
 
 | Failure Mode | Symptom | Correction |
-|---|---|---|
+| --- | --- | --- |
 | Prose without structure | The document reads well but cannot be traced | Add IDs, tables, and explicit relationships |
 | Premature implementation | The artifact jumps to code or solution details | Return to intent and constraints |
 | Generic AI output | The artifact sounds plausible but is not project-specific | Add concrete system context |

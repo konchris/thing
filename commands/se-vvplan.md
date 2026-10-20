@@ -35,6 +35,7 @@ Output artifacts:
 
 - `specs/system/09-vv/vv-plan.md` (finalised)
 - `specs/system/09-vv/vv-results.md` (empty ledger)
+- `specs/features/$FEATURE_ID/09-vv/vv-delta.md` (feature delta)
 
 Updates:
 
@@ -115,6 +116,85 @@ Stakeholder validation in the operational environment
 or a high-fidelity replica. Confirms the system solves
 the real problem for real users. Owned jointly by
 engineering and stakeholders.
+
+## Baseline-Update Mode
+
+The system-level artifacts this skill writes are a baseline: one
+current description of the whole system, not a log of features.
+This applies to:
+
+- `specs/system/09-vv/vv-plan.md`
+- `specs/system/09-vv/vv-results.md`
+
+and to every edit this skill makes to a threaded artifact (risk
+register, V&V plan, RTM).
+
+Before writing, check whether each artifact already exists.
+
+- **Does not exist** — this is the first feature to touch it.
+  Write it from the template in the Instructions below.
+- **Exists** — merge into it. Never add a section for this feature
+  (no "§7 Feature 011", no "Feature 012 additions") and never
+  write a second copy of a table that already exists.
+
+When merging:
+
+1. Read the existing artifact in full before changing anything.
+2. Verification entries, validation scenarios and results each
+   live in one table for the whole system. Never recreate
+   `vv-results.md` when it exists; add this feature's rows to its
+   tables and keep earlier results. Never delete rows from either
+   file.
+3. Add new rows to the existing table. Edit changed rows in place;
+   where the history matters, add
+   "revised {YYYY-MM-DD}, {feature ID}" to the row's notes.
+4. Retire rows that are no longer true: strike through the text
+   (`~~…~~`), set the status to `Superseded` and say by what in
+   Notes, and keep the row so its ID stays reserved. Record the
+   reason in the feature delta, not in the baseline.
+5. Rewrite prose so it describes the system as it is after this
+   feature. A sentence this feature has made untrue is corrected,
+   not left standing beside a newer one.
+6. Keep IDs stable. Never renumber and never reuse an ID. New IDs
+   start at the highest existing ID + 1.
+7. Set the header to `**Baseline as of:** {feature ID}, {date}`.
+
+Then list the services, interfaces, behaviours and constraints
+this feature adds, removes or changes. Search the artifacts of
+this and earlier development steps for statements about each
+one:
+
+- `specs/system/00-stakeholders/`
+- `specs/system/01-conops/`
+- `specs/system/02-nfr/`
+- `specs/system/04-requirements/`
+- `specs/system/05-architecture/`
+- `specs/system/06-interfaces/`
+- `specs/system/09-vv/`
+- `specs/system/rtm.md` (threaded; this skill updates it)
+- `specs/system/10-risk/risk-register.md` (threaded; this skill updates it)
+
+Correct every statement in them that the feature has made
+untrue, including in artifacts that earlier skills own.
+Re-assess every risk, V&V entry or RTM row in the artifacts
+above whose mitigation or subject the feature removes or
+changes.
+
+Finally, write the feature delta
+`specs/features/$FEATURE_ID/09-vv/vv-delta.md` using the template
+at `artifacts/baseline-delta.md`. If it already exists (this skill
+ran earlier for the same feature), append to its tables. Record:
+
+- **System Changes** — the list above
+- **Baseline Edits** — one row per item or prose section added,
+  changed or retired, in any artifact listed above, with the
+  reason
+- **Statements Checked** — existing statements reviewed against
+  the System Changes and left unchanged because they are still
+  true
+
+Write the delta on the first feature too; there every edit is
+`Added`.
 
 ## Instructions
 
@@ -262,15 +342,16 @@ frameworks, ask:
 
 ### Step 6 — Finalise the V&V Plan
 
-Rewrite `specs/system/09-vv/vv-plan.md` with the
+Rewrite `specs/system/09-vv/vv-plan.md` as one plan for the
+whole system (see Baseline-Update Mode) with the
 complete, audited, gap-free content:
 
 ```markdown
 # Verification and Validation Plan
 
 **System:** {system name}
-**Feature:** {feature ID and name}
-**Date:** {date}
+**Baseline as of:** {feature ID}, {date}
+**Feature deltas:** `specs/features/*/**/*-delta.md`
 **Status:** FINALISED — ready for execution
 **Last Updated By:** se-vvplan skill
 **Version:** {increment from previous}
@@ -389,15 +470,17 @@ and require follow-up before execution begins}
 
 ### Step 7 — Create V&V Results Ledger
 
-Create `specs/system/09-vv/vv-results.md` as an
+If `specs/system/09-vv/vv-results.md` exists, add this
+feature's rows to its tables and keep all earlier results.
+Otherwise create it as an
 empty ledger ready to receive results during execution:
 
 ```markdown
 # Verification and Validation Results
 
 **System:** {system name}
-**Feature:** {feature ID and name}
-**Date Created:** {date}
+**Baseline as of:** {feature ID}, {date}
+**Feature deltas:** `specs/features/*/**/*-delta.md`
 **Status:** OPEN — execution in progress
 **Last Updated By:** {updated as results are recorded}
 
@@ -484,3 +567,7 @@ Report to the user:
 7. Number of risk entries added
 8. Recommended next skill:
    `/thing.se-rtm`
+
+Also report the feature delta path, the number of baseline
+items added, changed and retired, and every statement corrected
+in an artifact this skill does not own.

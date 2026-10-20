@@ -9,7 +9,7 @@ branding/social/thing-github-social-preview-1280x640.png
 ```
 
 | Property | Required Value |
-|---|---|
+| --- | --- |
 | Dimensions | 1280 × 640 px |
 | File size | < 1 MB |
 | Format | PNG |

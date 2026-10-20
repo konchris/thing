@@ -1,8 +1,8 @@
 # Verification and Validation Plan
 
 **System:** TBD
-**Feature:** TBD
-**Date:** TBD
+**Baseline as of:** TBD
+**Feature deltas:** `specs/features/*/**/*-delta.md`
 **Status:** DRAFT — initiated by se-nfr, updated continuously
 **Last Updated By:** TBD
 

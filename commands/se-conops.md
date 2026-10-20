@@ -19,6 +19,7 @@ Output artifacts:
 
 - `specs/system/01-conops/conops.md`
 - `specs/system/01-conops/operational-scenarios.md`
+- `specs/features/$FEATURE_ID/01-conops/conops-delta.md` (feature delta)
 
 Updates:
 
@@ -36,6 +37,86 @@ Updates:
 
 If any pre-condition is not met, stop and tell the user which
 skill must be run first.
+
+## Baseline-Update Mode
+
+The system-level artifacts this skill writes are a baseline: one
+current description of the whole system, not a log of features.
+This applies to:
+
+- `specs/system/01-conops/conops.md`
+- `specs/system/01-conops/operational-scenarios.md`
+
+and to every edit this skill makes to a threaded artifact (risk
+register, V&V plan, RTM).
+
+Before writing, check whether each artifact already exists.
+
+- **Does not exist** — this is the first feature to touch it.
+  Write it from the template in the Instructions below.
+- **Exists** — merge into it. Never add a section for this feature
+  (no "§7 Feature 011", no "Feature 012 additions") and never
+  write a second copy of a table that already exists.
+
+When merging:
+
+1. Read the existing artifact in full before changing anything.
+2. Modes, success criteria, open issues and the scenario index
+   each live in one table for the whole system. Each scenario has
+   one section in `operational-scenarios.md`; a changed scenario
+   is edited in that section.
+3. Add new rows to the existing table. Edit changed rows in place;
+   where the history matters, add
+   "revised {YYYY-MM-DD}, {feature ID}" to the row's notes.
+4. Retire rows that are no longer true: strike through the text
+   (`~~…~~`), mark it `Retired` after its name (for a scenario, in
+   the index and at the top of its section), and keep the row so
+   its ID stays reserved. Record the reason in the feature delta,
+   not in the baseline.
+5. Rewrite prose so it describes the system as it is after this
+   feature. A sentence this feature has made untrue is corrected,
+   not left standing beside a newer one.
+6. Keep IDs stable. Never renumber and never reuse an ID. New IDs
+   start at the highest existing ID + 1.
+7. Set the header to `**Baseline as of:** {feature ID}, {date}`.
+
+Then list the services, interfaces, behaviours and constraints
+this feature adds, removes or changes. Search the artifacts of
+this and earlier development steps for statements about each
+one:
+
+- `specs/system/00-stakeholders/`
+- `specs/system/01-conops/`
+- `specs/system/10-risk/risk-register.md` (threaded; this skill updates it)
+
+Correct every statement in them that the feature has made
+untrue, including in artifacts that earlier skills own.
+Re-assess every risk, V&V entry or RTM row in the artifacts
+above whose mitigation or subject the feature removes or
+changes.
+
+Do not search or edit the artifacts of later development steps
+(`02-nfr/`, `04-requirements/`, `05-architecture/`,
+`06-interfaces/`, `09-vv/` under `specs/system/`). Their skills
+bring them up to date when they run for this feature, and each
+phase gate checks them.
+
+Finally, write the feature delta
+`specs/features/$FEATURE_ID/01-conops/conops-delta.md` using the
+template at `artifacts/baseline-delta.md`. If it already exists
+(this skill ran earlier for the same feature), append to its
+tables. Record:
+
+- **System Changes** — the list above
+- **Baseline Edits** — one row per item or prose section added,
+  changed or retired, in any artifact listed above, with the
+  reason
+- **Statements Checked** — existing statements reviewed against
+  the System Changes and left unchanged because they are still
+  true
+
+Write the delta on the first feature too; there every edit is
+`Added`.
 
 ## Instructions
 
@@ -158,14 +239,18 @@ would tell us the system is delivering value."*
 
 #### 6a — ConOps Document
 
-Write `specs/system/01-conops/conops.md`:
+Write `specs/system/01-conops/conops.md`, or merge into it if it
+exists (see Baseline-Update Mode).
+The template shows the whole document; when merging, the
+feature's modes, success criteria and open issues go into the
+existing §4, §5 and §6 tables:
 
 ```markdown
 # Concept of Operations
 
 **System:** {system name}
-**Feature:** {feature ID and name}
-**Date:** {date}
+**Baseline as of:** {feature ID}, {date}
+**Feature deltas:** `specs/features/*/**/*-delta.md`
 **Status:** DRAFT
 **Last Updated By:** se-conops skill
 
@@ -224,14 +309,15 @@ out of scope for this document.*
 
 #### 6b — Operational Scenarios
 
-Write `specs/system/01-conops/operational-scenarios.md`:
+Write `specs/system/01-conops/operational-scenarios.md`, or merge
+into it if it exists (see Baseline-Update Mode):
 
 ```markdown
 # Operational Scenarios
 
 **System:** {system name}
-**Feature:** {feature ID and name}
-**Date:** {date}
+**Baseline as of:** {feature ID}, {date}
+**Feature deltas:** `specs/features/*/**/*-delta.md`
 **Status:** DRAFT
 **Last Updated By:** se-conops skill
 
@@ -300,3 +386,7 @@ Report to the user:
    unresolved should be addressed through the scenarios —
    flag any that are still open
 7. Recommended next skill: `/thing.se-nfr`
+
+Also report the feature delta path, the number of baseline
+items added, changed and retired, and every statement corrected
+in an artifact this skill does not own.

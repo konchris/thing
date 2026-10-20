@@ -186,7 +186,7 @@ does not exist.
 
 Write `specs/features/$FEATURE_ID/08-tasks/tasks.md`:
 
-```markdown
+````markdown
 # Implementation Tasks
 
 **System:** {system name}
@@ -281,7 +281,7 @@ that can run simultaneously.}
 
 Phase 3 parallel group: T004, T005
 
-```
+````
 
 ### Step 7 — Update the RTM
 

@@ -17,7 +17,7 @@ The palette is built around:
 ## Primary Tokens
 
 | Token | Hex | Role |
-|---|---:|---|
+| --- | ---: | --- |
 | `--thing-bg` | `#F3F1EC` | Primary documentation background / parchment off-white |
 | `--thing-surface` | `#FAF8F3` | Cards, README panels, light surfaces |
 | `--thing-ink` | `#161616` | Primary text, logo, high-contrast linework |
@@ -80,7 +80,7 @@ Use:
 Use semantic color sparingly.
 
 | Semantic Meaning | Token |
-|---|---|
+| --- | --- |
 | Approved / stable / verified | `--thing-moss` |
 | Risk / concern / unresolved | `--thing-risk` |
 | Primary emphasis | `--thing-indigo` |

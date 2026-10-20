@@ -53,15 +53,24 @@ README.md               User-facing introduction and quick start.
    spec.md if SE artifacts are missing. If a pre-condition artifact is
    missing, stop and name the command that produces it.
 
-5. **Slash command namespace is /thing.{name}.** Do not reintroduce any
+5. **System-level artifacts are baselines.** Every command that writes
+   to `specs/system/` has a Baseline-Update Mode section: merge into the
+   existing artifact, keep one table per concept, edit or retire rows in
+   place, and record the feature's changes in a feature delta
+   (`artifacts/baseline-delta.md`). Never let a command append a
+   per-feature section to a system artifact. A new command that writes
+   to `specs/system/` needs the same section and a row in the se-gate
+   Feature Deltas table.
+
+6. **Slash command namespace is /thing.{name}.** Do not reintroduce any
    previous namespace (speckit.thing, thing) anywhere.
 
-6. **extension.yml is optional infrastructure.** THING's correctness does
+7. **extension.yml is optional infrastructure.** THING's correctness does
    not depend on extension.yml being present or hooks firing. The manual
    invocation sequence documented in docs/thing-architecture.md is the
    primary path. Hooks are a convenience layer on top.
 
-7. **Hook optional flags have fixed semantics:**
+8. **Hook optional flags have fixed semantics:**
    - `optional: false` — hook updates a threaded artifact; skipping breaks
      traceability; never change to true
    - `optional: true` — hook produces a new sequenced artifact; agent may

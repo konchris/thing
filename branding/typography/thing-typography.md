@@ -29,7 +29,7 @@ It should avoid:
 ### Primary Recommendation
 
 | Role | Font | Rationale |
-|---|---|---|
+| --- | --- | --- |
 | Logo / Wordmark | **Space Grotesk** | Geometric, technical, slightly unusual, but still restrained. Works well for a project named THING without becoming gimmicky. |
 | Headings | **IBM Plex Sans** | Engineered, readable, institutional without being corporate. Good documentation tone. |
 | Body | **Inter** | Excellent screen readability, widely used, neutral, reliable. |
@@ -44,7 +44,7 @@ This system gives THING a grounded technical identity while avoiding both AI-sta
 ### More Scholarly / Handbook-Oriented
 
 | Role | Font | Rationale |
-|---|---|---|
+| --- | --- | --- |
 | Logo / Wordmark | **Space Grotesk** | Keeps the identity modern and technical. |
 | Display / Major Headings | **IBM Plex Serif** | Adds a handbook / scholarly tone without becoming academic-heavy. |
 | UI / Navigation | **IBM Plex Sans** | Keeps interfaces clear and technical. |
@@ -99,7 +99,7 @@ For a more handbook-oriented site:
 ### Documentation / Website
 
 | Element | Font | Weight | Notes |
-|---|---:|---:|---|
+| --- | ---: | ---: | --- |
 | Project title | Space Grotesk | 600–700 | Use sparingly. Avoid excessive letter spacing. |
 | H1 | IBM Plex Sans | 600 | Clear and calm. |
 | H2 | IBM Plex Sans | 600 | Section-level structure. |

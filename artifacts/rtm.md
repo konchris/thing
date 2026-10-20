@@ -1,8 +1,8 @@
 # Requirements Traceability Matrix
 
 **System:** TBD
-**Feature:** TBD
-**Date:** TBD
+**Baseline as of:** TBD
+**Feature deltas:** `specs/features/*/**/*-delta.md`
 **Status:** ACTIVE — updated continuously
 **Last Updated By:** TBD
 

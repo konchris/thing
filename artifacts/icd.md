@@ -1,8 +1,8 @@
 # Interface Control Document
 
 **System:** TBD
-**Feature:** TBD
-**Date:** TBD
+**Baseline as of:** TBD
+**Feature deltas:** `specs/features/*/**/*-delta.md`
 **Status:** DRAFT
 **Last Updated By:** TBD
 

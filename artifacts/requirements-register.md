@@ -1,15 +1,15 @@
 # Requirements Register
 
 **System:** TBD
-**Feature:** TBD
-**Date:** TBD
+**Baseline as of:** TBD
+**Feature deltas:** `specs/features/*/**/*-delta.md`
 **Status:** DRAFT
 **Last Updated By:** TBD
 
 ---
 
 *This register is the authoritative list of all requirements
-for this feature. It is the source of truth for the RTM,
+for the system. It is the source of truth for the RTM,
 V&V plan, and phase gate checks.*
 
 ---

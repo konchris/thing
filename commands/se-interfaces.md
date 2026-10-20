@@ -22,6 +22,7 @@ the SysML Internal Block Diagram (IBD) conceptual model.
 Output artifacts:
 
 - `specs/system/06-interfaces/icd.md`
+- `specs/features/$FEATURE_ID/06-interfaces/interfaces-delta.md` (feature delta)
 
 Updates:
 
@@ -73,6 +74,85 @@ Every interface has exactly two sides: a **provider** and a
 
 An interface where both sides are External is not an interface
 the project manages — it is a dependency to monitor.
+
+## Baseline-Update Mode
+
+The system-level artifacts this skill writes are a baseline: one
+current description of the whole system, not a log of features.
+This applies to:
+
+- `specs/system/06-interfaces/icd.md`
+
+and to every edit this skill makes to a threaded artifact (risk
+register, V&V plan, RTM).
+
+Before writing, check whether each artifact already exists.
+
+- **Does not exist** — this is the first feature to touch it.
+  Write it from the template in the Instructions below.
+- **Exists** — merge into it. Never add a section for this feature
+  (no "§7 Feature 011", no "Feature 012 additions") and never
+  write a second copy of a table that already exists.
+
+When merging:
+
+1. Read the existing artifact in full before changing anything.
+2. Interfaces live in one register table for the whole system,
+   with one definition section per interface. Open interface
+   issues and external specifications each live in one table. The
+   interface matrix shows the current system.
+3. Add new rows to the existing table. Edit changed rows in place;
+   where the history matters, add
+   "revised {YYYY-MM-DD}, {feature ID}" to the row's notes.
+4. Retire rows that are no longer true: strike through the text
+   (`~~…~~`), set the status to `Deprecated` in the register and
+   the definition section, and keep the row so its ID stays
+   reserved. Record the reason in the feature delta, not in the
+   baseline.
+5. Rewrite prose so it describes the system as it is after this
+   feature. A sentence this feature has made untrue is corrected,
+   not left standing beside a newer one.
+6. Keep IDs stable. Never renumber and never reuse an ID. New IDs
+   start at the highest existing ID + 1.
+7. Set the header to `**Baseline as of:** {feature ID}, {date}`.
+
+Then list the services, interfaces, behaviours and constraints
+this feature adds, removes or changes. Search the artifacts of
+this and earlier development steps for statements about each
+one:
+
+- `specs/system/00-stakeholders/`
+- `specs/system/01-conops/`
+- `specs/system/02-nfr/`
+- `specs/system/04-requirements/`
+- `specs/system/05-architecture/`
+- `specs/system/06-interfaces/`
+- `specs/system/rtm.md` (threaded; this skill updates it)
+- `specs/system/09-vv/vv-plan.md` (threaded; this skill updates it)
+- `specs/system/10-risk/risk-register.md` (threaded; this skill updates it)
+
+Correct every statement in them that the feature has made
+untrue, including in artifacts that earlier skills own.
+Re-assess every risk, V&V entry or RTM row in the artifacts
+above whose mitigation or subject the feature removes or
+changes.
+
+Finally, write the feature delta
+`specs/features/$FEATURE_ID/06-interfaces/interfaces-delta.md`
+using the template at `artifacts/baseline-delta.md`. If it already
+exists (this skill ran earlier for the same feature), append to
+its tables. Record:
+
+- **System Changes** — the list above
+- **Baseline Edits** — one row per item or prose section added,
+  changed or retired, in any artifact listed above, with the
+  reason
+- **Statements Checked** — existing statements reviewed against
+  the System Changes and left unchanged because they are still
+  true
+
+Write the delta on the first feature too; there every edit is
+`Added`.
 
 ## Instructions
 
@@ -158,7 +238,7 @@ the container view:
 
 #### Software-Hardware Interfaces (SW-HW)
 
-*(Hardware systems only)*
+Hardware systems only.
 
 For each connection between a software component and a
 hardware element:
@@ -181,7 +261,7 @@ hardware element:
 
 #### Hardware-Hardware Interfaces (HW-HW)
 
-*(Electronics systems only)*
+Electronics systems only.
 
 For each direct hardware-to-hardware connection:
 
@@ -196,7 +276,7 @@ For each direct hardware-to-hardware connection:
 
 #### Power Interfaces (PWR)
 
-*(Hardware systems only)*
+Hardware systems only.
 
 For each power supply interface:
 
@@ -212,7 +292,7 @@ For each power supply interface:
 
 #### Mechanical Interfaces (MECH)
 
-*(Full systems with mechanical content only)*
+Full systems with mechanical content only.
 
 For each mechanical interface:
 
@@ -241,14 +321,15 @@ For each interface enumerated, ask:
 
 ### Step 4 — Write the ICD
 
-Write `specs/system/06-interfaces/icd.md`:
+Write `specs/system/06-interfaces/icd.md`, or merge into it if it
+exists (see Baseline-Update Mode):
 
 ````markdown
 # Interface Control Document
 
 **System:** {system name}
-**Feature:** {feature ID and name}
-**Date:** {date}
+**Baseline as of:** {feature ID}, {date}
+**Feature deltas:** `specs/features/*/**/*-delta.md`
 **Status:** DRAFT
 **Last Updated By:** se-interfaces skill
 
@@ -426,3 +507,7 @@ Report to the user:
 7. Recommended next skill:
    `/thing.se-gate 3`
    (Phase 3 gate before proceeding to implementation planning)
+
+Also report the feature delta path, the number of baseline
+items added, changed and retired, and every statement corrected
+in an artifact this skill does not own.

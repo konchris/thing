@@ -23,6 +23,7 @@ not a requirement — it is a wish.
 Output artifacts:
 
 - `specs/system/02-nfr/quality-attributes.md`
+- `specs/features/$FEATURE_ID/02-nfr/nfr-delta.md` (feature delta)
 
 Initiates:
 
@@ -45,6 +46,84 @@ Updates:
 
 If any pre-condition is not met, stop and tell the user which
 skill must be run first.
+
+## Baseline-Update Mode
+
+The system-level artifacts this skill writes are a baseline: one
+current description of the whole system, not a log of features.
+This applies to:
+
+- `specs/system/02-nfr/quality-attributes.md`
+
+and to every edit this skill makes to a threaded artifact (risk
+register, V&V plan, RTM).
+
+Before writing, check whether each artifact already exists.
+
+- **Does not exist** — this is the first feature to touch it.
+  Write it from the template in the Instructions below.
+- **Exists** — merge into it. Never add a section for this feature
+  (no "§7 Feature 011", no "Feature 012 additions") and never
+  write a second copy of a table that already exists.
+
+When merging:
+
+1. Read the existing artifact in full before changing anything.
+2. NFRs live in one summary table for the whole system, with one
+   detail section per NFR. A changed NFR is edited in its row and
+   its section.
+3. Add new rows to the existing table. Edit changed rows in place;
+   where the history matters, add
+   "revised {YYYY-MM-DD}, {feature ID}" to the row's notes.
+4. Retire rows that are no longer true: strike through the text
+   (`~~…~~`), set the status to `Retired`, and keep the row so its
+   ID stays reserved. Record the reason in the feature delta, not
+   in the baseline.
+5. Rewrite prose so it describes the system as it is after this
+   feature. A sentence this feature has made untrue is corrected,
+   not left standing beside a newer one.
+6. Keep IDs stable. Never renumber and never reuse an ID. New IDs
+   start at the highest existing ID + 1.
+7. Set the header to `**Baseline as of:** {feature ID}, {date}`.
+
+Then list the services, interfaces, behaviours and constraints
+this feature adds, removes or changes. Search the artifacts of
+this and earlier development steps for statements about each
+one:
+
+- `specs/system/00-stakeholders/`
+- `specs/system/01-conops/`
+- `specs/system/02-nfr/`
+- `specs/system/09-vv/vv-plan.md` (threaded; this skill updates it)
+- `specs/system/10-risk/risk-register.md` (threaded; this skill updates it)
+
+Correct every statement in them that the feature has made
+untrue, including in artifacts that earlier skills own.
+Re-assess every risk, V&V entry or RTM row in the artifacts
+above whose mitigation or subject the feature removes or
+changes.
+
+Do not search or edit the artifacts of later development steps
+(`04-requirements/`, `05-architecture/`, `06-interfaces/` under
+`specs/system/`). Their skills bring them up to date when they run
+for this feature, and each phase gate checks them.
+
+Finally, write the feature delta
+`specs/features/$FEATURE_ID/02-nfr/nfr-delta.md` using the
+template at `artifacts/baseline-delta.md`. If it already exists
+(this skill ran earlier for the same feature), append to its
+tables. Record:
+
+- **System Changes** — the list above
+- **Baseline Edits** — one row per item or prose section added,
+  changed or retired, in any artifact listed above, with the
+  reason
+- **Statements Checked** — existing statements reviewed against
+  the System Changes and left unchanged because they are still
+  true
+
+Write the delta on the first feature too; there every edit is
+`Added`.
 
 ## Instructions
 
@@ -249,14 +328,15 @@ After working through all categories:
 
 #### 5a — Quality Attributes Document
 
-Write `specs/system/02-nfr/quality-attributes.md`:
+Write `specs/system/02-nfr/quality-attributes.md`, or merge into
+it if it exists (see Baseline-Update Mode):
 
 ```markdown
 # Quality Attributes and Non-Functional Requirements
 
 **System:** {system name}
-**Feature:** {feature ID and name}
-**Date:** {date}
+**Baseline as of:** {feature ID}, {date}
+**Feature deltas:** `specs/features/*/**/*-delta.md`
 **Status:** DRAFT
 **Last Updated By:** se-nfr skill
 
@@ -299,6 +379,8 @@ what will be measured, under what conditions, with what tooling}
 #### 5b — Seed the V&V Plan
 
 Create `specs/system/09-vv/vv-plan.md` if it does not exist.
+If it exists, add rows for new NFRs to the existing plan table
+and edit the rows of changed or retired NFRs in place.
 
 Write the header and add one row per NFR to the plan table:
 
@@ -306,8 +388,8 @@ Write the header and add one row per NFR to the plan table:
 # Verification and Validation Plan
 
 **System:** {system name}
-**Feature:** {feature ID and name}
-**Date:** {date}
+**Baseline as of:** {feature ID}, {date}
+**Feature deltas:** `specs/features/*/**/*-delta.md`
 **Status:** DRAFT — initiated by se-nfr, updated continuously
 **Last Updated By:** se-nfr skill
 
@@ -402,3 +484,7 @@ Report to the user:
 6. Any NFRs with TBD verification methods — these must be
    resolved before Phase 2 gate
 7. Recommended next skill: `/thing.se-explore`
+
+Also report the feature delta path, the number of baseline
+items added, changed and retired, and every statement corrected
+in an artifact this skill does not own.
